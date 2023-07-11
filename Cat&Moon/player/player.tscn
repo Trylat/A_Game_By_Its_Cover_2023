@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=3 uid="uid://xek7ebwcvfsk"]
+
+[ext_resource type="Texture2D" uid="uid://c4bo4qcu0e1ef" path="res://player/player_spritesheet.png" id="1_ra3gf"]
+[ext_resource type="Script" path="res://player/player_script.gd" id="1_whvpr"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tqj74"]
+atlas = ExtResource("1_ra3gf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5igyb"]
+atlas = ExtResource("1_ra3gf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jt4p2"]
+atlas = ExtResource("1_ra3gf")
+region = Rect2(0, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dn8m2"]
+atlas = ExtResource("1_ra3gf")
+region = Rect2(16, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f43eo"]
+atlas = ExtResource("1_ra3gf")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_y3w0j"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tqj74")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5igyb")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jt4p2")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dn8m2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f43eo")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jcfwu"]
+size = Vector2(11, 7)
+
+[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite")]
+script = ExtResource("1_whvpr")
+animatedSprite = NodePath("AnimatedSprite2D")
+speed = 100.0
+jumpForce = 200.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_y3w0j")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 4.5)
+shape = SubResource("RectangleShape2D_jcfwu")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
