@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xek7ebwcvfsk"]
+[gd_scene load_steps=11 format=3 uid="uid://xek7ebwcvfsk"]
 
 [ext_resource type="Texture2D" uid="uid://c4bo4qcu0e1ef" path="res://player/player_spritesheet.png" id="1_ra3gf"]
 [ext_resource type="Script" path="res://player/player_script.gd" id="1_whvpr"]
@@ -59,19 +59,26 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcfwu"]
 size = Vector2(11, 7)
 
-[node name="player" type="CharacterBody2D" node_paths=PackedStringArray("animatedSprite")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_jn58y"]
+
+[node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_whvpr")
-animatedSprite = NodePath("AnimatedSprite2D")
 speed = 100.0
 jumpForce = 200.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -4)
 sprite_frames = SubResource("SpriteFrames_y3w0j")
 animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.5, 4.5)
+position = Vector2(0.5, 0.5)
 shape = SubResource("RectangleShape2D_jcfwu")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(3, 3)
+
+[node name="HissArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HissArea2D"]
+shape = SubResource("CircleShape2D_jn58y")

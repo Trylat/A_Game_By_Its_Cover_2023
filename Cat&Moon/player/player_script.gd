@@ -1,14 +1,20 @@
+class_name Player
 extends CharacterBody2D
 
-@export var animatedSprite: AnimatedSprite2D = null
 @export var speed = 300.0
 @export var jumpForce = 400.0
+
+@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hissArea: Area2D = $HissArea2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var spawnPoint: LampPost = null
+
 func _process(_delta: float) -> void:
 	do_animation()
+	do_hiss()
 
 func _physics_process(delta: float):
 	do_movement(delta)
@@ -51,3 +57,18 @@ func do_animation():
 		animatedSprite.play("walk")
 	else:
 		animatedSprite.play("idle")
+
+# @brief Manage inputs for hiss and do actions accordingly.
+func do_hiss():
+	if(not Input.is_action_just_pressed("player_hiss")):
+		return
+
+	for area in hissArea.get_overlapping_areas():
+		if (area is LampPost):
+			# Old spawn point
+			if (spawnPoint != null):
+				spawnPoint.play_animation_on() 
+			
+			# Newly founded spawn point
+			spawnPoint = area as LampPost
+			spawnPoint.play_animation_shiny();
