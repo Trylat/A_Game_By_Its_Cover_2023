@@ -1,0 +1,110 @@
+[gd_scene load_steps=14 format=3 uid="uid://canuhtr6uyalt"]
+
+[ext_resource type="Script" path="res://lamp_post/lamp_post.gd" id="1_6m4se"]
+[ext_resource type="Texture2D" uid="uid://db45km8m4cbln" path="res://lamp_post/lamp_post_spritesheet.png" id="2_mv03u"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1f5xo"]
+size = Vector2(8, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy8my"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2yjht"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hir5q"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2y17n"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8qx30"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(0, 64, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nt78"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(0, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wlo4q"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(16, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfkxq"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(32, 32, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8sewv"]
+atlas = ExtResource("2_mv03u")
+region = Rect2(48, 32, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ywpgi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy8my")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yjht")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hir5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2y17n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hir5q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2yjht")
+}],
+"loop": true,
+"name": &"fogged",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8qx30")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nt78")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlo4q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfkxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8sewv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfkxq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wlo4q")
+}],
+"loop": true,
+"name": &"shiny",
+"speed": 3.0
+}]
+
+[node name="LampPost" type="Area2D"]
+script = ExtResource("1_6m4se")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_1f5xo")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ywpgi")
+animation = &"fogged"

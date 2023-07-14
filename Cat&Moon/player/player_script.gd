@@ -1,27 +1,28 @@
+class_name Player
 extends CharacterBody2D
 
 @export var speed = 300.0
 @export var jumpForce = 400.0
 
-@onready var sprite : Sprite2D = $Sprite2D
-@onready var animation_tree : AnimationTree = $AnimationTree
+@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
+@onready var hissArea: Area2D = $HissArea2D
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _ready():
-	animation_tree.active = true
+var spawnPoint: LampPost = null
 
-func _process(delta) -> void:
+func _process(_delta: float) -> void:
 	do_animation()
+	do_hiss()
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	do_movement(delta)
 
 
 # @brief Apply user inputs to CharacterBody3D for movement.
 # @param delta The delta time in seconds
-func do_movement(delta):
+func do_movement(delta: float):
 		# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -43,12 +44,31 @@ func do_movement(delta):
 
 # @brief Select current animation based on CharacterBody3D.
 func do_animation():
-	
 	# face left or right
 	if velocity.x > 0:
-		sprite.flip_h = false
+		animatedSprite.flip_h = false
 	elif velocity.x < 0:
-		sprite.flip_h = true
+		animatedSprite.flip_h = true
 	
-	# Select animation base on velocity
-	animation_tree.set("parameters/Move/blend_position", velocity.x)
+	# Select animation
+	if not is_on_floor():
+		animatedSprite.play("jump") # Jumping / Falling
+	elif velocity.x != 0:
+		animatedSprite.play("walk")
+	else:
+		animatedSprite.play("idle")
+
+# @brief Manage inputs for hiss and do actions accordingly.
+func do_hiss():
+	if(not Input.is_action_just_pressed("player_hiss")):
+		return
+
+	for area in hissArea.get_overlapping_areas():
+		if (area is LampPost):
+			# Old spawn point
+			if (spawnPoint != null):
+				spawnPoint.play_animation_on() 
+			
+			# Newly founded spawn point
+			spawnPoint = area as LampPost
+			spawnPoint.play_animation_shiny();
