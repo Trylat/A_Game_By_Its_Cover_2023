@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cm0slxki8ne1l"]
+
+[ext_resource type="Script" path="res://StateMachine.gd" id="1_3g8hi"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tu7bc"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3kyk7"]
+
+[node name="PlayerCat" type="CharacterBody2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_tu7bc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+tree_root = SubResource("AnimationNodeStateMachine_3kyk7")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="StateMachine" type="Node" parent="."]
+script = ExtResource("1_3g8hi")

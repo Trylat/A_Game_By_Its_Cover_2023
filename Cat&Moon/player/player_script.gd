@@ -1,22 +1,27 @@
 extends CharacterBody2D
 
-@export var animatedSprite: AnimatedSprite2D = null
 @export var speed = 300.0
 @export var jumpForce = 400.0
+
+@onready var sprite : Sprite2D = $Sprite2D
+@onready var animation_tree : AnimationTree = $AnimationTree
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func _process(_delta: float) -> void:
+func _ready():
+	animation_tree.active = true
+
+func _process(delta) -> void:
 	do_animation()
 
-func _physics_process(delta: float):
+func _physics_process(delta):
 	do_movement(delta)
 
 
 # @brief Apply user inputs to CharacterBody3D for movement.
 # @param delta The delta time in seconds
-func do_movement(delta: float):
+func do_movement(delta):
 		# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -38,16 +43,12 @@ func do_movement(delta: float):
 
 # @brief Select current animation based on CharacterBody3D.
 func do_animation():
+	
 	# face left or right
 	if velocity.x > 0:
-		animatedSprite.flip_h = false
+		sprite.flip_h = false
 	elif velocity.x < 0:
-		animatedSprite.flip_h = true
+		sprite.flip_h = true
 	
-	# Select animation
-	if not is_on_floor():
-		animatedSprite.play("jump") # Jumping / Falling
-	elif velocity.x != 0:
-		animatedSprite.play("walk")
-	else:
-		animatedSprite.play("idle")
+	# Select animation base on velocity
+	animation_tree.set("parameters/Move/blend_position", velocity.x)
