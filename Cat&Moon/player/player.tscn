@@ -268,7 +268,6 @@ initial_state = NodePath("Iddle")
 
 [node name="Iddle" type="Node" parent="StateMachine"]
 script = ExtResource("7_2qyd0")
-canMove = false
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_5xmmp")

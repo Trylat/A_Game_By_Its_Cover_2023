@@ -30,18 +30,17 @@ func _physics_process(delta):
 # @brief Apply user inputs to CharacterBody2D for movement.
 # @param delta The delta time in seconds
 func do_movement(delta: float):
-		# Add the gravity.
+	# Get character movement direction vector based on player input
+	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+	
+	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
+		
 	# Handle Jump.
-	if Input.is_action_just_pressed("player_jump") and is_on_floor():
+	if Input.is_action_just_pressed("player_jump") && is_on_floor():
 		velocity.y = -jumpForce
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-	# Get direction vector based on player input
-	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+		
 	if direction && state_machine.checkCanMove():
 		velocity.x = direction.x * speed
 	else:
