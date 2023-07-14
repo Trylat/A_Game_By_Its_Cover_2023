@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://iphjdoh14xn"]
+[gd_scene load_steps=6 format=3 uid="uid://iphjdoh14xn"]
 
 [ext_resource type="Texture2D" uid="uid://x2dcsui3e8m1" path="res://level_test/level_test_tileset.png" id="1_r7xvm"]
 [ext_resource type="PackedScene" uid="uid://xek7ebwcvfsk" path="res://player/player.tscn" id="2_f4kjm"]
+[ext_resource type="PackedScene" uid="uid://canuhtr6uyalt" path="res://lamp_post/lamp_post.tscn" id="3_tq2oa"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_in803"]
 texture = ExtResource("1_r7xvm")
@@ -121,5 +122,11 @@ tile_set = SubResource("TileSet_bsvlu")
 format = 2
 layer_0/tile_data = PackedInt32Array(65532, 65540, 1, 65533, 4, 4, 65534, 65540, 0, 65535, 65540, 0, 0, 65540, 0, 1, 65540, 0, 2, 65540, 0, 3, 65540, 4, 65539, 65540, 2, 65538, 65540, 2, 65537, 65540, 2, 65536, 65540, 2, 131071, 65540, 2, 131070, 65540, 2, 131069, 65540, 2, 131068, 65540, 2, -65533, 4, 0, -65532, 65540, 0, 4, 65540, 1, 65540, 65540, 2, -65531, 65540, 4, -131067, 4, 1, -196603, 4, 1, -262139, 4, 1, -262138, 131076, 1, -196602, 131076, 1, -131066, 131076, 1, -65530, 131076, 1, 5, 65540, 1, 65541, 65540, 2, 65542, 131076, 2, 6, 131076, 1, -327675, 4, 1, -327674, 131076, 1, -393210, 131076, 1, -393211, 4, 1, -458747, 65540, 3, -458746, 131076, 1, -524283, 65540, 0, -524284, 65540, 0, -524285, 65540, 0, -524286, 65540, 0, -524287, 65540, 0, -524288, 65540, 0, -458753, 65540, 0, -458754, 65540, 0, -458755, 65540, 0, -458756, 65540, 0, -458757, 65540, 0, -393221, 4, 3, -393220, 65540, 2, -393219, 65540, 2, -393218, 65540, 2, -393217, 65540, 2, -458752, 65540, 2, -458751, 65540, 2, -458750, 65540, 2, -458749, 65540, 2, -458748, 65540, 2, -524282, 131076, 0, -3, 131076, 0, -4, 4, 4, -65540, 131076, 0, -65541, 4, 4, -5, 65540, 1, 65531, 65540, 1, 131067, 65540, 2, -131077, 131076, 1, -196613, 131076, 1, -262149, 131076, 1, -327685, 131076, 1, -131078, 4, 1, -65542, 4, 1, -6, 4, 1, 65530, 4, 1, 131066, 4, 2, -196614, 4, 1, -262150, 4, 1, -327686, 4, 1, -393222, 4, 1, -458758, 4, 0)
 
-[node name="player" parent="." instance=ExtResource("2_f4kjm")]
+[node name="Player" parent="." instance=ExtResource("2_f4kjm")]
 position = Vector2(8, -24)
+
+[node name="LampPost1" parent="." instance=ExtResource("3_tq2oa")]
+position = Vector2(64, -32)
+
+[node name="LampPost2" parent="." instance=ExtResource("3_tq2oa")]
+position = Vector2(-56, -48)
