@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 300.0
+@export var speed = 200.0
 
 
 @onready var Sprite: Sprite2D = $Sprite2D
