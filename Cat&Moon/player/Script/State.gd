@@ -3,17 +3,13 @@ class_name State
 
 signal  Transitioned
 
-@export var canMove : bool = true
+@export var can_move : bool = true
 
-func Enter():
-	pass
-	
-func Exit():
-	pass
-	
-func Update(_delta: float):
+#Actions that are performed when we enter the state
+func on_enter():
 	pass
 
-func Physics_Update(_delta: float):
+#Action that are performed just before we exit the state
+func on_exit():
 	pass
-	
+

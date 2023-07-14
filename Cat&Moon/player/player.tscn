@@ -262,15 +262,18 @@ tree_root = SubResource("AnimationNodeStateMachine_jn2lv")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = 0.0
 
-[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
+[node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "character")]
 script = ExtResource("6_bmnu2")
 initial_state = NodePath("Iddle")
+character = NodePath("..")
 
 [node name="Iddle" type="Node" parent="StateMachine"]
 script = ExtResource("7_2qyd0")
+canMove = null
 
 [node name="Walk" type="Node" parent="StateMachine"]
 script = ExtResource("8_5xmmp")
+canMove = null
 
 [node name="Jump" type="Node" parent="StateMachine"]
 script = ExtResource("9_fg2je")

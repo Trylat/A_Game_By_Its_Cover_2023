@@ -3,11 +3,13 @@ extends Node
 class_name StateMachine 
 
 @export var initial_state : State
+@export var character : CharacterBody2D
 
 var current_state : State
 var states : Dictionary = {}
 
 func _ready():
+	# List States that are StateMachine childrens
 	for child in get_children():
 		if child is State:
 			states[child.name.to_lower()] = child
@@ -18,8 +20,9 @@ func _ready():
 			push_warning("Child " + child.name + " is not a State!!")
 			
 	if initial_state:
-		initial_state.Enter()
+		initial_state.on_enter()
 		current_state = initial_state
 
+# Check if the player can move in the current state
 func checkCanMove():
-	return current_state.canMove
+	return current_state.can_move
