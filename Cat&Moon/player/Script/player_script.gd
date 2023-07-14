@@ -2,7 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 @export var speed = 300.0
-@export var jumpForce = 400.0
+
 
 @onready var Sprite: Sprite2D = $Sprite2D
 @onready var hissArea: Area2D = $HissArea2D
@@ -27,8 +27,6 @@ func _physics_process(delta):
 	do_hiss()
 
 
-# @brief Apply user inputs to CharacterBody2D for movement.
-# @param delta The delta time in seconds
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
 	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
@@ -36,10 +34,6 @@ func do_movement(delta: float):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		
-	# Handle Jump.
-	if Input.is_action_just_pressed("player_jump") && is_on_floor():
-		velocity.y = -jumpForce
 		
 	if direction && state_machine.checkCanMove():
 		velocity.x = direction.x * speed
