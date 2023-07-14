@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://cm0slxki8ne1l"]
 
-[ext_resource type="Script" path="res://StateMachine.gd" id="1_3g8hi"]
+[ext_resource type="Script" path="res://player/Script/StateMachine.gd" id="1_3g8hi"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tu7bc"]
 

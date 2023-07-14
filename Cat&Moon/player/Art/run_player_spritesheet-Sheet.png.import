@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bl7tb5pcnoq2b"
-path="res://.godot/imported/Felis_silvestris_restoration___skeleton-removebg-preview.png-a3fbdfa30e816cef80e83fff5a190ea9.ctex"
+uid="uid://bwqekfwwhvbs"
+path="res://.godot/imported/run_player_spritesheet-Sheet.png-bfc5c6e639fbdfd7b27508025e2c0a13.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Felis_silvestris_restoration___skeleton-removebg-preview.png"
-dest_files=["res://.godot/imported/Felis_silvestris_restoration___skeleton-removebg-preview.png-a3fbdfa30e816cef80e83fff5a190ea9.ctex"]
+source_file="res://player/Art/run_player_spritesheet-Sheet.png"
+dest_files=["res://.godot/imported/run_player_spritesheet-Sheet.png-bfc5c6e639fbdfd7b27508025e2c0a13.ctex"]
 
 [params]
 

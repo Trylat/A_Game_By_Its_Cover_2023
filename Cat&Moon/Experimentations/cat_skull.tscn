@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://dba4msdlei5wl"]
 
-[ext_resource type="Texture2D" uid="uid://bl7tb5pcnoq2b" path="res://Felis_silvestris_restoration___skeleton-removebg-preview.png" id="1_8l73j"]
+[ext_resource type="Texture2D" uid="uid://bl7tb5pcnoq2b" path="res://Experimentations/Felis_silvestris_restoration___skeleton-removebg-preview.png" id="1_8l73j"]
 
 [sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_5asfc"]
 enabled = false

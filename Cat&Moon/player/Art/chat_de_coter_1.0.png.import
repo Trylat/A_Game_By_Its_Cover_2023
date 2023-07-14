@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxk7ekv4esxkg"
-path="res://.godot/imported/walk_player_spritesheet-Sheet.png-8f37c005b6f9f93dff9467d785e0bea3.ctex"
+uid="uid://b6mm27taj80ko"
+path="res://.godot/imported/chat_de_coter_1.0.png-38b46e00019038f3803b523efaa632f1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/walk_player_spritesheet-Sheet.png"
-dest_files=["res://.godot/imported/walk_player_spritesheet-Sheet.png-8f37c005b6f9f93dff9467d785e0bea3.ctex"]
+source_file="res://player/Art/chat_de_coter_1.0.png"
+dest_files=["res://.godot/imported/chat_de_coter_1.0.png-38b46e00019038f3803b523efaa632f1.ctex"]
 
 [params]
 

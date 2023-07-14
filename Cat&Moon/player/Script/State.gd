@@ -3,6 +3,8 @@ class_name State
 
 signal  Transitioned
 
+@export var canMove : bool = true
+
 func Enter():
 	pass
 	
