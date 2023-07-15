@@ -380,7 +380,7 @@ state_v_speed = -200.0
 [node name="LongJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
 script = ExtResource("14_2bl85")
 landding_state = NodePath("../Landding")
-state_v_speed = -300.0
+state_v_speed = -200.0
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -46.0
