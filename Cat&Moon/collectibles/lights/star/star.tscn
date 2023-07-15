@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://efovypnais1a"]
+
+[ext_resource type="Texture2D" uid="uid://c7m20reo0kckd" path="res://collectibles/lights/star/star_spritesheet.png" id="1_26s6b"]
+[ext_resource type="Script" path="res://collectibles/lights/light.gd" id="1_qhhnr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_g7p62"]
+radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v76yt"]
+atlas = ExtResource("1_26s6b")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g8q2o"]
+atlas = ExtResource("1_26s6b")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cy85s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v76yt")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g8q2o")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="Star" type="Area2D"]
+script = ExtResource("1_qhhnr")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_g7p62")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_cy85s")
+animation = &"on"

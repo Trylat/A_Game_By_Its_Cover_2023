@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://db45km8m4cbln"
-path="res://.godot/imported/lamp_post_spritesheet.png-6f8c448cdfcede1970a3ab409a15f98c.ctex"
+path="res://.godot/imported/lamp_post_spritesheet.png-098e770e3d06e828e42affe702c44fe3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://lamp_post/lamp_post_spritesheet.png"
-dest_files=["res://.godot/imported/lamp_post_spritesheet.png-6f8c448cdfcede1970a3ab409a15f98c.ctex"]
+source_file="res://collectibles/lamp_post/lamp_post_spritesheet.png"
+dest_files=["res://.godot/imported/lamp_post_spritesheet.png-098e770e3d06e828e42affe702c44fe3.ctex"]
 
 [params]
 
