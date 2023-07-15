@@ -17,7 +17,7 @@ func state_process(delta):
 	elif is_walking:
 		next_state = walking_state
 	else:
-		iddle()
+		idle()
 
 
 func state_input(event : InputEvent):
@@ -25,7 +25,7 @@ func state_input(event : InputEvent):
 		jump()
 
 
-func iddle():
+func idle():
 	# Look for input that are already pressed
 	if Input.is_action_pressed("player_walk_left") || Input.is_action_pressed("player_walk_right"):
 		is_walking = true

@@ -22,7 +22,7 @@ size = Vector2(11, 7)
 [sub_resource type="CircleShape2D" id="CircleShape2D_jn58y"]
 
 [sub_resource type="Animation" id="Animation_6ajsy"]
-resource_name = "Iddle"
+resource_name = "Idle"
 length = 0.2
 loop_mode = 1
 tracks/0/type = "value"
@@ -241,7 +241,7 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8xt2f"]
 _data = {
-"Iddle": SubResource("Animation_6ajsy"),
+"Idle": SubResource("Animation_6ajsy"),
 "JumpEnd": SubResource("Animation_ynnt2"),
 "JumpStart": SubResource("Animation_adc4w"),
 "RESET": SubResource("Animation_6ppym"),
@@ -256,7 +256,7 @@ animation = &"JumpEnd"
 animation = &"JumpStart"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7r2dn"]
-animation = &"Iddle"
+animation = &"Idle"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_kh0gj"]
 animation = &"Walk"
