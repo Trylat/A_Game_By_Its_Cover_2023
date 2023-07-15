@@ -4,6 +4,9 @@ class_name State
 signal  Transitioned
 
 @export var can_move : bool = true
+@export var state_h_speed : float = 200.0
+@export var state_v_speed : float = 200.0
+@export var state_vector_modifier : Vector2 = Vector2(1.0, 1.0)
 
 var character : CharacterBody2D
 var playback : AnimationNodeStateMachinePlayback

@@ -1,13 +1,14 @@
 extends State
 
-@export var jump_force = -200.0
 @export var air_state : State
 @export var iddle_state : State
 @export var walk_state : State
 @export var long_jump_state : State
 
+
 var is_running = true
 var is_walking = true
+var direction = Vector2.ZERO
 
 func state_process(delta):
 	if !character.is_on_floor():
@@ -24,15 +25,21 @@ func state_input(event : InputEvent):
 		jump()
 
 func run(delta):
+	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 	# decide fallback state base on input
 	if Input.is_action_pressed("player_walk_left") || Input.is_action_pressed("player_walk_right"):
 		is_walking = true
-		if Input.is_action_pressed("player_run"):
+		if Input.is_action_pressed("player_run") || is_running:
 			is_running = true
 		else:
 			is_running = false
 	else:
 		is_walking = false
+		
+	if direction && can_move:
+		character.velocity.x = direction.x * state_h_speed * state_vector_modifier.x
+	else:
+		character.velocity.x = move_toward(character.velocity.x, 0, state_h_speed)
 
 func on_exit():
 	is_running = true
@@ -40,6 +47,5 @@ func on_exit():
 
 
 func jump():
-	character.velocity.y = jump_force
 	next_state = long_jump_state
 	playback.travel("JumpStart")

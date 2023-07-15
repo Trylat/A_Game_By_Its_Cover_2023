@@ -7,6 +7,10 @@ func state_process(delta):
 		next_state = landding_state
 		
 
+func on_enter():
+	character.velocity.y = state_v_speed
+	character.move_and_slide()
+
 func on_exit():
 	if next_state == landding_state:
 		playback.travel("JumpEnd")

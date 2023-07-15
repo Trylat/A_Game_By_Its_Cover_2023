@@ -334,7 +334,6 @@ air_state = NodePath("../Air")
 walking_state = NodePath("../Walk")
 running_state = NodePath("../Run")
 high_jump_state = NodePath("../HighJump")
-state_v_speed = 0.0
 
 [node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "running_state", "normal_jump_state")]
 script = ExtResource("11_xdl2r")
@@ -342,7 +341,6 @@ air_state = NodePath("../Air")
 iddle_state = NodePath("../Idle")
 running_state = NodePath("../Run")
 normal_jump_state = NodePath("../NormalJump")
-state_v_speed = 0.0
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "walk_state", "long_jump_state")]
 script = ExtResource("12_pjd32")
@@ -350,37 +348,35 @@ air_state = NodePath("../Air")
 iddle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 long_jump_state = NodePath("../LongJump")
-state_h_speed = 300.0
-state_v_speed = 0.0
+state_h_speed = 400.0
 
 [node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
 script = ExtResource("8_0wm1g")
 landding_state = NodePath("../Landding")
 state_h_speed = 50.0
-state_v_speed = 0.0
+state_v_speed = 50.0
 
 [node name="Landding" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("9_r3mxg")
 ground_state = NodePath("../Idle")
 can_move = false
-state_h_speed = 0.0
-state_v_speed = 0.0
 
 [node name="HighJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
 script = ExtResource("12_4tdou")
+state_v_speed = -400.0
 landding_state = NodePath("../Landding")
-state_h_speed = 100.0
-state_v_speed = -300.0
+state_vector_modifier = Vector2(0.5, 1)
 
 [node name="NormalJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
 script = ExtResource("13_tqptr")
-landding_state = NodePath("../Landding")
 state_v_speed = -200.0
+landding_state = NodePath("../Landding")
 
 [node name="LongJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
 script = ExtResource("14_2bl85")
+state_v_speed = -200.0
 landding_state = NodePath("../Landding")
-state_v_speed = -300.0
+state_vector_modifier = Vector2(1, 0.2)
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
 offset_left = -46.0

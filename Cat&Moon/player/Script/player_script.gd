@@ -1,8 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 200.0
-
 
 @onready var Sprite: Sprite2D = $Sprite2D
 @onready var hissArea: Area2D = $HissArea2D
@@ -20,7 +18,7 @@ func _ready():
 
 func _process(delta):
 	do_animation()	
-
+	
 
 func _physics_process(delta):
 	do_movement(delta)
@@ -36,13 +34,13 @@ func do_movement(delta: float):
 		velocity.y += gravity * delta
 		
 	if direction && state_machine.checkCanMove():
-		velocity.x = direction.x * speed
+		velocity.x = direction.x * state_machine.state_h_speed * state_machine.vector_modifier.x
 	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.x = move_toward(velocity.x, 0, state_machine.state_h_speed)
 
 	move_and_slide()
 	do_animation()
-	do_sprite_flip()
+
 
 
 func do_sprite_flip():
@@ -55,6 +53,7 @@ func do_sprite_flip():
 
 # @brief Select current animation based on CharacterBody2D
 func do_animation():
+	do_sprite_flip()
 	# Use velocity vector to blend animations whit the animation tree
 	animation_tree.set("parameters/Move/blend_position", direction.x) 
 

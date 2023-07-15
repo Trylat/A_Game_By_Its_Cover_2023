@@ -6,7 +6,6 @@ extends State
 @export var normal_jump_state : State
 
 var direction = Vector2.ZERO
-var jump_force = -150
 var is_running = false
 var is_walking = true
 
@@ -28,7 +27,6 @@ func state_input(event : InputEvent):
 
 
 func jump():
-	character.velocity.y = jump_force
 	next_state = normal_jump_state
 	playback.travel("JumpStart")
 
@@ -41,6 +39,8 @@ func walk():
 			is_running = true
 	else:
 		is_walking = false
+	
+
 
 
 func on_exit():
