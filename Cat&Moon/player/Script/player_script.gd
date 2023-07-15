@@ -72,3 +72,7 @@ func do_hiss():
 			# Newly founded spawn point
 			spawnPoint = area as LampPost
 			spawnPoint.play_animation_shiny();
+
+func _on_pickup_area_2d_area_entered(area):
+	if (area is MoonFragment):
+		print("Finish the level/Moon fragment count++")
