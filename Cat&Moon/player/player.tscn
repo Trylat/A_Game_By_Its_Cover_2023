@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://67pdasueyci3"]
+[gd_scene load_steps=37 format=3 uid="uid://67pdasueyci3"]
 
 [ext_resource type="Script" path="res://player/Script/player_script.gd" id="1_21cuq"]
 [ext_resource type="Texture2D" uid="uid://bvlou3fcxrwk7" path="res://player/Art/idle_player_spritesheet-Sheet.png" id="3_lnbgd"]
@@ -20,6 +20,9 @@
 size = Vector2(11, 7)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jn58y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ure2y"]
+radius = 7.0
 
 [sub_resource type="Animation" id="Animation_6ajsy"]
 resource_name = "Idle"
@@ -312,6 +315,11 @@ zoom = Vector2(3, 3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HissArea2D"]
 shape = SubResource("CircleShape2D_jn58y")
 
+[node name="PickupArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
+shape = SubResource("CircleShape2D_ure2y")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8xt2f")
@@ -379,4 +387,5 @@ text = "State : "
 script = ExtResource("7_j0hi2")
 state_machine = NodePath("../StateMachine")
 
+[connection signal="area_entered" from="PickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimationTree" to="StateMachine/Landding" method="_on_animation_tree_animation_finished"]
