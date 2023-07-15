@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://c4fx4gedeui3f"]
+
+[ext_resource type="Texture2D" uid="uid://dhsp0edhnsiwu" path="res://moon_fragment/moon_fragment_spritesheet.png" id="1_6mgmf"]
+[ext_resource type="Script" path="res://moon_fragment/moon_fragment.gd" id="1_vuul4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e2qu3"]
+atlas = ExtResource("1_6mgmf")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e7wmq"]
+atlas = ExtResource("1_6mgmf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sji1h"]
+atlas = ExtResource("1_6mgmf")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v1vf3"]
+atlas = ExtResource("1_6mgmf")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_34rcg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e2qu3")
+}],
+"loop": true,
+"name": &"Variant1",
+"speed": 2.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e7wmq")
+}],
+"loop": true,
+"name": &"Variant2",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sji1h")
+}],
+"loop": true,
+"name": &"Variant3",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v1vf3")
+}],
+"loop": true,
+"name": &"Variant4",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nuojq"]
+radius = 8.0
+
+[node name="MoonFragment" type="Area2D"]
+script = ExtResource("1_vuul4")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_34rcg")
+animation = &"Variant4"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_nuojq")
