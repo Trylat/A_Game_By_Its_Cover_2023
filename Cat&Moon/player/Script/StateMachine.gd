@@ -9,8 +9,6 @@ class_name StateMachine
 var current_state : State
 var states : Dictionary = {}
 var vector_modifier : Vector2 = Vector2(1.0, 1.0)
-var state_h_speed : float
-var state_v_speed : float
 
 func _ready():
 	# List States that are StateMachine childrens
@@ -49,8 +47,6 @@ func checkCanMove():
 	return current_state.can_move
 
 func update_state_velocity():
-	state_h_speed = current_state.state_h_speed
-	state_v_speed = current_state.state_v_speed
 	vector_modifier = current_state.state_vector_modifier
 	
 

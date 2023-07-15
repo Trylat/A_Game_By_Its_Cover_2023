@@ -35,11 +35,7 @@ func run(delta):
 			is_running = false
 	else:
 		is_walking = false
-		
-	if direction && can_move:
-		character.velocity.x = direction.x * state_h_speed * state_vector_modifier.x
-	else:
-		character.velocity.x = move_toward(character.velocity.x, 0, state_h_speed)
+
 
 func on_exit():
 	is_running = true

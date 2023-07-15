@@ -7,6 +7,12 @@ extends CharacterBody2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine : StateMachine = $StateMachine
 
+@export var h_speed_max : float = 200.0
+@export var h_step_speed : float = 1.0
+
+@export var v_speed_init : float = 400
+@export var v_speed_min : float = 200
+
 var direction = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -21,6 +27,7 @@ func _process(delta):
 	
 
 func _physics_process(delta):
+	h_speed_max = state_machine.current_state.h_speed_max
 	do_movement(delta)
 	do_hiss()
 
@@ -34,12 +41,31 @@ func do_movement(delta: float):
 		velocity.y += gravity * delta
 		
 	if direction && state_machine.checkCanMove():
-		velocity.x = direction.x * state_machine.state_h_speed * state_machine.vector_modifier.x
+		do_h_speed_calculation()
 	else:
-		velocity.x = move_toward(velocity.x, 0, state_machine.state_h_speed)
-
+		velocity.x = move_toward(velocity.x, 0, h_speed_max)
+	
+	if Input.is_action_just_pressed("player_jump") && is_on_floor():
+		do_v_speed_calculation()
 	move_and_slide()
 	do_animation()
+
+func do_h_speed_calculation():
+	if abs(velocity.x) < h_speed_max:
+		velocity.x += direction.x * abs(h_step_speed * state_machine.vector_modifier.x)
+
+
+func do_v_speed_calculation():
+	var x = clamp((abs(velocity.x) / 300), 0.0, 1.0)
+	print("x ", x)
+	var v_speed = -velocity.x  * (velocity.x/v_speed_init) + v_speed_init
+	v_speed = clamp(v_speed, v_speed_min, v_speed_init) 
+
+	print("V ", v_speed)
+	print("H ", velocity.x)
+	velocity.y = - v_speed
+	print("Velocity v ", velocity.y)
+	
 
 
 

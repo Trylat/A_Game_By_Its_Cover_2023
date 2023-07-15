@@ -5,6 +5,7 @@ extends State
 @export var running_state : State
 @export var normal_jump_state : State
 
+
 var direction = Vector2.ZERO
 var is_running = false
 var is_walking = true
