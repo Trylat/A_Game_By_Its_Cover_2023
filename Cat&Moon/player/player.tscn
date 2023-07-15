@@ -6,10 +6,10 @@
 [ext_resource type="Texture2D" uid="uid://bxk7ekv4esxkg" path="res://player/Art/walk_player_spritesheet-Sheet.png" id="4_w8wcp"]
 [ext_resource type="Texture2D" uid="uid://buwpeafnovw2e" path="res://player/Art/jump_player_spritesheet-Sheet.png" id="5_cfalp"]
 [ext_resource type="Script" path="res://player/Script/StateMachine.gd" id="6_bmnu2"]
+[ext_resource type="Script" path="res://player/Script/IdleState.gd" id="7_5ni0x"]
 [ext_resource type="Script" path="res://player/Script/StateDebugLabel.gd" id="7_j0hi2"]
 [ext_resource type="Script" path="res://player/Script/AirState.gd" id="8_0wm1g"]
 [ext_resource type="Script" path="res://player/Script/LandingState.gd" id="9_r3mxg"]
-[ext_resource type="Script" path="res://player/Script/IddleState.gd" id="10_wph5j"]
 [ext_resource type="Script" path="res://player/Script/WalkState.gd" id="11_xdl2r"]
 [ext_resource type="Script" path="res://player/Script/HighJump.gd" id="12_4tdou"]
 [ext_resource type="Script" path="res://player/Script/RunState.gd" id="12_pjd32"]
@@ -324,12 +324,12 @@ parameters/Move/blend_position = -0.0175439
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "character", "animation_tree")]
 script = ExtResource("6_bmnu2")
-initial_state = NodePath("Iddle")
+initial_state = NodePath("Idle")
 character = NodePath("..")
 animation_tree = NodePath("../AnimationTree")
 
-[node name="Iddle" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "walking_state", "running_state", "high_jump_state")]
-script = ExtResource("10_wph5j")
+[node name="Idle" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "walking_state", "running_state", "high_jump_state")]
+script = ExtResource("7_5ni0x")
 air_state = NodePath("../Air")
 walking_state = NodePath("../Walk")
 running_state = NodePath("../Run")
@@ -338,14 +338,14 @@ high_jump_state = NodePath("../HighJump")
 [node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "running_state", "normal_jump_state")]
 script = ExtResource("11_xdl2r")
 air_state = NodePath("../Air")
-iddle_state = NodePath("../Iddle")
+iddle_state = NodePath("../Idle")
 running_state = NodePath("../Run")
 normal_jump_state = NodePath("../NormalJump")
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "walk_state", "long_jump_state")]
 script = ExtResource("12_pjd32")
 air_state = NodePath("../Air")
-iddle_state = NodePath("../Iddle")
+iddle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
 long_jump_state = NodePath("../LongJump")
 
@@ -355,7 +355,7 @@ landding_state = NodePath("../Landding")
 
 [node name="Landding" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
 script = ExtResource("9_r3mxg")
-ground_state = NodePath("../Iddle")
+ground_state = NodePath("../Idle")
 can_move = false
 
 [node name="HighJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
