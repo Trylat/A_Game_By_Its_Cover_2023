@@ -24,7 +24,7 @@ func state_input(event : InputEvent):
 	if event.is_action_pressed("player_jump"):
 		jump()
 
-func run(delta):
+func run(_delta):
 	# decide fallback state base on input
 	if character.direction.x == direction.x:
 		is_walking = true
