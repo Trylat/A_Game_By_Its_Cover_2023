@@ -1,13 +1,17 @@
 class_name Player
 extends CharacterBody2D
 
-@export var speed = 200.0
-
 
 @onready var Sprite: Sprite2D = $Sprite2D
 @onready var hissArea: Area2D = $HissArea2D
 @onready var animation_tree: AnimationTree = $AnimationTree
 @onready var state_machine : StateMachine = $StateMachine
+
+@export var h_speed_max : float = 200.0
+@export var h_step_speed : float = 1.0
+
+@export var v_speed_init : float = 400
+@export var v_speed_min : float = 200
 
 var direction = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -20,29 +24,47 @@ func _ready():
 
 func _process(delta):
 	do_animation()	
-
+	
 
 func _physics_process(delta):
+	h_speed_max = state_machine.current_state.h_speed_max
 	do_movement(delta)
 	do_hiss()
 
 
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
-	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+	if direction != Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down"):
+		direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+
+
+	if direction.x && state_machine.checkCanMove():
+		do_h_speed_calculation()
+	else:
+		velocity.x = 0.0 #move_toward(velocity.x, 0, h_speed_max)
+	
+	if Input.is_action_just_pressed("player_jump") && is_on_floor():
+		do_v_speed_calculation()
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-	if direction && state_machine.checkCanMove():
-		velocity.x = direction.x * speed
-	else:
-		velocity.x = move_toward(velocity.x, 0, speed)
-
-	move_and_slide()
-	do_animation()
 	do_sprite_flip()
+	do_animation()
+	move_and_slide()
+	
+
+func do_h_speed_calculation():
+	if abs(velocity.x) < h_speed_max:
+		velocity.x += direction.x * abs(h_step_speed * state_machine.vector_modifier.x)
+
+
+func do_v_speed_calculation():
+	var x = clamp((abs(velocity.x) / 300), 0.0, 1.0)
+	var v_speed = -velocity.x  * (velocity.x/v_speed_init) + v_speed_init
+	v_speed = clamp(v_speed, v_speed_min, v_speed_init) 
+	velocity.y = - v_speed
 
 
 func do_sprite_flip():
