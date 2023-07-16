@@ -26,14 +26,13 @@ func state_input(event : InputEvent):
 
 func idle():
 	# Look for input that are already pressed
-	if Input.is_action_pressed("player_walk_left") || Input.is_action_pressed("player_walk_right"):
+	if character.direction.x:
 		is_walking = true
 		if Input.is_action_pressed("player_run"):
 			is_running = true
 
 
 func jump():
-	next_state = high_jump_state
 	playback.travel("JumpStart")
 
 
@@ -44,3 +43,10 @@ func on_enter():
 func on_exit():
 	is_walking = false
 	is_running = false
+	
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	if anim_name == "NewJumpStart":
+		character.do_v_speed_calculation()
+		next_state = high_jump_state
