@@ -105,7 +105,7 @@ func do_animation():
 func do_hiss():
 	if(not Input.is_action_just_pressed("player_hiss")):
 		return
-
+	
 	for area in hissArea.get_overlapping_areas():
 		if (area is LampPost):
 			# Old spawn point
@@ -118,6 +118,7 @@ func do_hiss():
 		elif (area is FogArea):
 			var fogArea: FogArea = area as FogArea
 			fogArea.on_hiss()
+	$HissArea2D/AudioStreamPlayer.play()
 
 func _on_pickup_area_2d_area_entered(area: Area2D):
 	if (area is MoonFragment):

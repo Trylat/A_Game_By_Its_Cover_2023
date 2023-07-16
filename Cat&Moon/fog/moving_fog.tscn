@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0e2ibce0u72e"]
+[gd_scene load_steps=5 format=3 uid="uid://d0e2ibce0u72e"]
 
 [ext_resource type="Script" path="res://fog/moving_fog.gd" id="2_70ibo"]
 [ext_resource type="PackedScene" uid="uid://c64ho6ntcg2vg" path="res://fog/fog_area.tscn" id="2_ln1k1"]
+[ext_resource type="AudioStream" uid="uid://bbdbx14p4o1du" path="res://musics/evil_fog_whispers.mp3" id="3_mf1k1"]
 
 [sub_resource type="Curve2D" id="Curve2D_gixgo"]
 resource_local_to_scene = true
@@ -18,6 +19,13 @@ speed = 0.2
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
 position = Vector2(-344, 0)
 rotates = false
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PathFollow2D"]
+stream = ExtResource("3_mf1k1")
+volume_db = 6.679
+max_distance = 500.0
+attenuation = 1.93188
+bus = &"SFX"
 
 [node name="FogArea" parent="PathFollow2D" instance=ExtResource("2_ln1k1")]
 
