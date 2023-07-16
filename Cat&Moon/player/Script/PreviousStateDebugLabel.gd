@@ -4,4 +4,5 @@ extends Label
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta):
-	text = "Previous State : " + state_machine.previous_state.name
+	if (state_machine.previous_state != null):
+		text = "Previous State : " + state_machine.previous_state.name
