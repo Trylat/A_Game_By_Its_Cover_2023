@@ -11,3 +11,6 @@ func turn_off():
 
 func turn_on():
 	animatedsprite.play("on")
+
+func is_on() -> bool:
+	return animatedsprite.animation == "on"
