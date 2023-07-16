@@ -3,13 +3,12 @@ extends State
 @export var air_state : State
 @export var iddle_state : State
 @export var running_state : State
-@export var normal_jump_state : State
+@export var jump_state : State
+@export var state_machine : StateMachine
 
-var direction = Vector2.ZERO
-var jump_force = -150
 var is_running = false
 var is_walking = true
-
+var direction : Vector2 = Vector2.ZERO
 
 func state_process(delta):
 	if !character.is_on_floor():
@@ -28,14 +27,14 @@ func state_input(event : InputEvent):
 
 
 func jump():
-	character.velocity.y = jump_force
-	next_state = normal_jump_state
+	next_state = jump_state
 	playback.travel("JumpStart")
 
 
 func walk():
 	# Get character movement direction vector based on player input
-	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+	if character.direction.x != direction.x:
+		is_walking = false
 	if direction.x:
 		if Input.is_action_pressed("player_run"):
 			is_running = true
@@ -43,6 +42,14 @@ func walk():
 		is_walking = false
 
 
+func on_enter():
+	if state_machine.previous_state != jump_state:
+		direction.x = character.direction.x
+	else:
+		direction.x = state_machine.previous_direction.x
+
+
 func on_exit():
-	is_running = false
+	is_running = false 
 	is_walking = true
+	var direction : Vector2 = Vector2.ZERO

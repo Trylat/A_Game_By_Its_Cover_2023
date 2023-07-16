@@ -1,6 +1,5 @@
 extends State
 
-@export var jump_force = -200.0
 @export var air_state : State
 @export var walking_state : State
 @export var running_state : State
@@ -34,10 +33,14 @@ func idle():
 
 
 func jump():
-	character.velocity.y = jump_force
 	next_state = high_jump_state
 	playback.travel("JumpStart")
-	
+
+
+func on_enter():
+	character.velocity = Vector2.ZERO
+
+
 func on_exit():
 	is_walking = false
 	is_running = false

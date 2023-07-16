@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://67pdasueyci3"]
+[gd_scene load_steps=33 format=3 uid="uid://67pdasueyci3"]
 
 [ext_resource type="Script" path="res://player/Script/player_script.gd" id="1_21cuq"]
 [ext_resource type="Texture2D" uid="uid://bvlou3fcxrwk7" path="res://player/Art/idle_player_spritesheet-Sheet.png" id="3_lnbgd"]
@@ -9,12 +9,10 @@
 [ext_resource type="Script" path="res://player/Script/IdleState.gd" id="7_5ni0x"]
 [ext_resource type="Script" path="res://player/Script/StateDebugLabel.gd" id="7_j0hi2"]
 [ext_resource type="Script" path="res://player/Script/AirState.gd" id="8_0wm1g"]
-[ext_resource type="Script" path="res://player/Script/LandingState.gd" id="9_r3mxg"]
 [ext_resource type="Script" path="res://player/Script/WalkState.gd" id="11_xdl2r"]
-[ext_resource type="Script" path="res://player/Script/HighJump.gd" id="12_4tdou"]
 [ext_resource type="Script" path="res://player/Script/RunState.gd" id="12_pjd32"]
-[ext_resource type="Script" path="res://player/Script/NormalJump.gd" id="13_tqptr"]
-[ext_resource type="Script" path="res://player/Script/LongJump.gd" id="14_2bl85"]
+[ext_resource type="Script" path="res://player/Script/JumpState.gd" id="13_5unrw"]
+[ext_resource type="Script" path="res://player/Script/PreviousStateDebugLabel.gd" id="16_jv2nc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcfwu"]
 size = Vector2(11, 7)
@@ -252,9 +250,6 @@ _data = {
 "Walk": SubResource("Animation_rips1")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gyadf"]
-animation = &"JumpEnd"
-
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cidss"]
 animation = &"JumpStart"
 
@@ -281,23 +276,19 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7m1y1"]
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2mhch"]
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4sq8o"]
-switch_mode = 2
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_aqdbp"]
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jn2lv"]
-states/JumpEnd/node = SubResource("AnimationNodeAnimation_gyadf")
-states/JumpEnd/position = Vector2(570, 22)
 states/JumpStart/node = SubResource("AnimationNodeAnimation_cidss")
 states/JumpStart/position = Vector2(402, 22)
 states/Move/node = SubResource("AnimationNodeBlendSpace1D_g1js4")
 states/Move/position = Vector2(402, 112)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_qy0e5"), "Move", "JumpStart", SubResource("AnimationNodeStateMachineTransition_7m1y1"), "JumpStart", "JumpEnd", SubResource("AnimationNodeStateMachineTransition_2mhch"), "JumpEnd", "Move", SubResource("AnimationNodeStateMachineTransition_4sq8o")]
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_qy0e5"), "Move", "JumpStart", SubResource("AnimationNodeStateMachineTransition_7m1y1"), "JumpStart", "Move", SubResource("AnimationNodeStateMachineTransition_aqdbp")]
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_21cuq")
+h_step_speed = 10.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -4)
@@ -341,51 +332,51 @@ script = ExtResource("7_5ni0x")
 air_state = NodePath("../Air")
 walking_state = NodePath("../Walk")
 running_state = NodePath("../Run")
-high_jump_state = NodePath("../HighJump")
+high_jump_state = NodePath("../Jump")
+h_speed_max = 0.01
 
-[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "running_state", "normal_jump_state")]
+[node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "running_state", "jump_state", "state_machine")]
 script = ExtResource("11_xdl2r")
 air_state = NodePath("../Air")
 iddle_state = NodePath("../Idle")
 running_state = NodePath("../Run")
-normal_jump_state = NodePath("../NormalJump")
+jump_state = NodePath("../Jump")
+state_machine = NodePath("..")
 
 [node name="Run" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "walk_state", "long_jump_state")]
 script = ExtResource("12_pjd32")
 air_state = NodePath("../Air")
 iddle_state = NodePath("../Idle")
 walk_state = NodePath("../Walk")
-long_jump_state = NodePath("../LongJump")
+long_jump_state = NodePath("../Jump")
+state_vector_modifier = Vector2(1.5, 1)
+h_speed_max = 300.0
 
-[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
+[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine")]
 script = ExtResource("8_0wm1g")
-landding_state = NodePath("../Landding")
+state_machine = NodePath("..")
+h_speed_max = 100.0
 
-[node name="Landding" type="Node" parent="StateMachine" node_paths=PackedStringArray("ground_state")]
-script = ExtResource("9_r3mxg")
-ground_state = NodePath("../Idle")
-can_move = false
-
-[node name="HighJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
-script = ExtResource("12_4tdou")
-landding_state = NodePath("../Landding")
-
-[node name="NormalJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
-script = ExtResource("13_tqptr")
-landding_state = NodePath("../Landding")
-
-[node name="LongJump" type="Node" parent="StateMachine" node_paths=PackedStringArray("landding_state")]
-script = ExtResource("14_2bl85")
-landding_state = NodePath("../Landding")
+[node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine")]
+script = ExtResource("13_5unrw")
+state_machine = NodePath("..")
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
-offset_left = -46.0
+offset_left = -115.0
 offset_top = -36.0
-offset_right = 7.0
+offset_right = 99.0
 offset_bottom = -10.0
-text = "State : "
+text = "Current State : "
 script = ExtResource("7_j0hi2")
 state_machine = NodePath("../StateMachine")
 
+[node name="StateDebugLabel2" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+offset_left = -115.0
+offset_top = -57.0
+offset_right = 140.0
+offset_bottom = -31.0
+text = "Previous State : "
+script = ExtResource("16_jv2nc")
+state_machine = NodePath("../StateMachine")
+
 [connection signal="area_entered" from="PickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]
-[connection signal="animation_finished" from="AnimationTree" to="StateMachine/Landding" method="_on_animation_tree_animation_finished"]
