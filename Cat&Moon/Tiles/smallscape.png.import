@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwfb4xibqotm1"
-path="res://.godot/imported/spritesheet.png-59f7dfdebfc035c80a63445e3bd8a9bd.ctex"
+uid="uid://d4hsv6ditet2d"
+path="res://.godot/imported/smallscape.png-284e3935661a577a7c6fdcf487db85d8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://spritesheet.png"
-dest_files=["res://.godot/imported/spritesheet.png-59f7dfdebfc035c80a63445e3bd8a9bd.ctex"]
+source_file="res://Tiles/smallscape.png"
+dest_files=["res://.godot/imported/smallscape.png-284e3935661a577a7c6fdcf487db85d8.ctex"]
 
 [params]
 

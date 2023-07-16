@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8iqgwarmexu1"
-path="res://.godot/imported/tiles_sheet.png-04b2fbee30e6cc0bc28643be107f5f59.ctex"
+uid="uid://cyx1h2oqoxyst"
+path="res://.godot/imported/PC Computer - RPG Maker MV - Starlit Sky.png-0c4e77b834119a322cedbe6099dd78ef.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://tiles_sheet.png"
-dest_files=["res://.godot/imported/tiles_sheet.png-04b2fbee30e6cc0bc28643be107f5f59.ctex"]
+source_file="res://Tiles/PC Computer - RPG Maker MV - Starlit Sky.png"
+dest_files=["res://.godot/imported/PC Computer - RPG Maker MV - Starlit Sky.png-0c4e77b834119a322cedbe6099dd78ef.ctex"]
 
 [params]
 
