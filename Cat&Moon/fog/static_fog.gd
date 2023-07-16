@@ -24,4 +24,4 @@ static func on_light_collected(nbLightCollected: int):
 			fog.queue_free()
 
 func _ready():
-	$AnimatedSprite2D.play("default")
+	($AnimatedSprite2D as AnimatedSprite2D).play("default")

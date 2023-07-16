@@ -16,11 +16,12 @@ func _ready():
 	# List States that are StateMachine childrens
 	for child in get_children():
 		if child is State:
-			states[child.name.to_lower()] = child
+			var state = child as State
+			states[child.name.to_lower()] = state
 			
 			#Setup Child to be usefull
-			child.character = character
-			child.playback = animation_tree["parameters/playback"]
+			state.character = character
+			state.playback = animation_tree["parameters/playback"]
 		
 		else:
 			push_warning("Child " + child.name + " is not a State!!")
