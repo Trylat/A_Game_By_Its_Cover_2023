@@ -4,8 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://c64ho6ntcg2vg" path="res://fog/fog_area.tscn" id="2_ln1k1"]
 
 [sub_resource type="Curve2D" id="Curve2D_gixgo"]
+resource_local_to_scene = true
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 32, 0, 0, 0, 0, 0, 0, 0)
+"points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -344, -136, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
@@ -15,6 +16,7 @@ script = ExtResource("2_70ibo")
 speed = 0.2
 
 [node name="PathFollow2D" type="PathFollow2D" parent="."]
+position = Vector2(-344, 0)
 rotates = false
 
 [node name="FogArea" parent="PathFollow2D" instance=ExtResource("2_ln1k1")]
