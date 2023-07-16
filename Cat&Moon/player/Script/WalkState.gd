@@ -27,8 +27,8 @@ func state_input(event : InputEvent):
 
 
 func jump():
+	character.do_v_speed_calculation()
 	next_state = jump_state
-	playback.travel("JumpStart")
 
 
 func walk():

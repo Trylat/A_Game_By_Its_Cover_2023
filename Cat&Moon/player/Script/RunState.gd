@@ -34,6 +34,10 @@ func run(_delta):
 			is_running = false
 	else:
 		is_walking = false
+	
+	character.is_running = is_running
+	
+	
 
 
 func on_enter():
@@ -43,8 +47,9 @@ func on_enter():
 func on_exit():
 	is_running = true
 	is_walking = true
+	character.is_running = false
 
 
 func jump():
+	character.do_v_speed_calculation()
 	next_state = long_jump_state
-	playback.travel("JumpStart")
