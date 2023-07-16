@@ -1,12 +1,14 @@
 class_name MainMenuController extends Control
-signal start_game_pressed
+signal new_game_pressed
+signal load_game_pressed
 
-@onready var start_game_button: Button = $%StartGameButton
+@onready var new_game_button: Button = $Content/NewGameButton
+@onready var load_game_button: Button = $Content/LoadGameButton
 @onready var options_menu: OptionsMenuController = $%OptionsMenu
 @onready var content: Control = $%Content 
 
 func _ready():
-	start_game_button.grab_focus()
+	new_game_button.grab_focus()
 
 func quit():
 	get_tree().quit()
@@ -18,7 +20,7 @@ func open_options():
 	
 func close_options():
 	content.show();
-	start_game_button.grab_focus()
+	new_game_button.grab_focus()
 	options_menu.hide()
 
 func open_main_menu():
@@ -27,5 +29,14 @@ func open_main_menu():
 func close_main_menu():
 	self.hide()
 
-func _on_start_game_button_pressed():
-	emit_signal("start_game_pressed")
+func disable_load_game_button():
+	load_game_button.disabled = true
+
+func enable_load_game_button():
+	load_game_button.disabled = false
+
+func _on_load_game_button_pressed():
+	emit_signal("load_game_pressed")
+
+func _on_new_game_button_pressed():
+	emit_signal("new_game_pressed")
