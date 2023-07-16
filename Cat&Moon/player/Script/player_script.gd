@@ -17,6 +17,7 @@ var direction = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var spawnPoint: LampPost = null
+var nbLightsCollected: int = 0
 
 func _ready():
 	animation_tree.active = true
@@ -95,11 +96,15 @@ func do_hiss():
 			# Newly founded spawn point
 			spawnPoint = area as LampPost
 			spawnPoint.play_animation_shiny();
+		elif (area is FogArea):
+			area.on_hiss()
 
 func _on_pickup_area_2d_area_entered(area):
 	if (area is MoonFragment):
 		print("Finish the level/Moon fragment count++")
 	elif (area is Light):
 		var light = area as Light
-		light.turn_on()
-		print("Light pickup")
+		if (not light.is_on()):
+			light.turn_on()
+			nbLightsCollected += 1
+			StaticFog.on_light_collected(nbLightsCollected)
