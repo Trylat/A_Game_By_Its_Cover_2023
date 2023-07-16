@@ -1,4 +1,4 @@
-[gd_scene load_steps=61 format=3 uid="uid://67pdasueyci3"]
+[gd_scene load_steps=57 format=3 uid="uid://67pdasueyci3"]
 
 [ext_resource type="Script" path="res://player/Script/player_script.gd" id="1_21cuq"]
 [ext_resource type="Texture2D" uid="uid://d3ytyd3d2kdef" path="res://player/Art/Jump_frames/chat_Sot_2.0.png" id="2_cw1ph"]
@@ -820,35 +820,12 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_7kipd")
 blend_point_1/pos = 1.0
 blend_point_2/node = SubResource("AnimationNodeAnimation_t518s")
 blend_point_2/pos = 0.0
-blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wuxkq"]
-animation = &"PH_NewRun"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3edb7"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m44rm"]
 animation = &"NewWalk"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_iugkl"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_wuxkq")
-blend_point_0/pos = -1.1
-blend_point_1/node = SubResource("AnimationNodeAnimation_3edb7")
-blend_point_1/pos = -1.0
-min_space = -4.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p8lx4"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qe4ur"]
 animation = &"NewWalk"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2jf02"]
-animation = &"PH_NewRun"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_a8hst"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_p8lx4")
-blend_point_0/pos = 0.1
-blend_point_1/node = SubResource("AnimationNodeAnimation_2jf02")
-blend_point_1/pos = 1.1
-max_space = 4.0
-blend_mode = 1
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_g0seg"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_yneao")
@@ -861,9 +838,9 @@ blend_point_3/node = SubResource("AnimationNodeAnimation_wj0vh")
 blend_point_3/pos = Vector2(1, -0.8)
 blend_point_4/node = SubResource("AnimationNodeBlendSpace1D_pxvrf")
 blend_point_4/pos = Vector2(0, -1)
-blend_point_5/node = SubResource("AnimationNodeBlendSpace1D_iugkl")
+blend_point_5/node = SubResource("AnimationNodeAnimation_m44rm")
 blend_point_5/pos = Vector2(-1.1, 0)
-blend_point_6/node = SubResource("AnimationNodeBlendSpace1D_a8hst")
+blend_point_6/node = SubResource("AnimationNodeAnimation_qe4ur")
 blend_point_6/pos = Vector2(1.1, 0)
 min_space = Vector2(-1.1, -1)
 max_space = Vector2(1.1, 1)
@@ -880,7 +857,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jn2lv"]
 states/JumpStart/node = SubResource("AnimationNodeAnimation_cidss")
-states/JumpStart/position = Vector2(334, 92)
+states/JumpStart/position = Vector2(402, 22)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_g0seg")
 states/Move/position = Vector2(334, 208)
 states/Start/position = Vector2(136, 208)
@@ -923,8 +900,6 @@ tree_root = SubResource("AnimationNodeStateMachine_jn2lv")
 anim_player = NodePath("../AnimationPlayer")
 parameters/Move/blend_position = Vector2(0.0946064, -0.598945)
 parameters/Move/4/blend_position = 0
-parameters/Move/5/blend_position = 0
-parameters/Move/6/blend_position = 0
 
 [node name="StateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state", "character", "animation_tree")]
 script = ExtResource("6_bmnu2")

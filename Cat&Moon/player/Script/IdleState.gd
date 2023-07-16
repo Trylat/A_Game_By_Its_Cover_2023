@@ -33,7 +33,6 @@ func idle():
 
 
 func jump():
-	next_state = high_jump_state
 	playback.travel("JumpStart")
 
 
@@ -44,3 +43,10 @@ func on_enter():
 func on_exit():
 	is_walking = false
 	is_running = false
+	
+
+
+func _on_animation_tree_animation_finished(anim_name):
+	if anim_name == "NewJumpStart":
+		character.do_v_speed_calculation()
+		next_state = high_jump_state
