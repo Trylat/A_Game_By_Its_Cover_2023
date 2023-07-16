@@ -10,7 +10,7 @@ var is_running = false
 var is_walking = true
 var direction : Vector2 = Vector2.ZERO
 
-func state_process(delta):
+func state_process(_delta):
 	if !character.is_on_floor():
 		next_state = air_state
 	elif is_running:
@@ -52,4 +52,4 @@ func on_enter():
 func on_exit():
 	is_running = false 
 	is_walking = true
-	var direction : Vector2 = Vector2.ZERO
+	direction = Vector2.ZERO
