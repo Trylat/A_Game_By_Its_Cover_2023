@@ -25,9 +25,8 @@ func state_input(event : InputEvent):
 		jump()
 
 func run(delta):
-	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 	# decide fallback state base on input
-	if Input.is_action_pressed("player_walk_left") || Input.is_action_pressed("player_walk_right"):
+	if character.direction.x == direction.x:
 		is_walking = true
 		if Input.is_action_pressed("player_run") || is_running:
 			is_running = true
@@ -35,6 +34,10 @@ func run(delta):
 			is_running = false
 	else:
 		is_walking = false
+
+
+func on_enter():
+	direction = character.direction
 
 
 func on_exit():

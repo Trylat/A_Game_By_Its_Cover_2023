@@ -35,7 +35,12 @@ func idle():
 func jump():
 	next_state = high_jump_state
 	playback.travel("JumpStart")
-	
+
+
+func on_enter():
+	character.velocity = Vector2.ZERO
+
+
 func on_exit():
 	is_walking = false
 	is_running = false

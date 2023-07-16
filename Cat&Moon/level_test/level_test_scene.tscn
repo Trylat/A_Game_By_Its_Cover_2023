@@ -127,7 +127,6 @@ layer_0/tile_data = PackedInt32Array(65532, 65540, 1, 65533, 4, 4, 65534, 65540,
 
 [node name="Player" parent="." instance=ExtResource("2_f4kjm")]
 position = Vector2(2, -31)
-h_speed_max = 200.0
 
 [node name="LampPost1" parent="." instance=ExtResource("3_tq2oa")]
 position = Vector2(64, -32)

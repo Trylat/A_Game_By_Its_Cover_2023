@@ -34,21 +34,26 @@ func _physics_process(delta):
 
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
-	direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+	if direction != Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down"):
+		direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+
+
+	if direction.x && state_machine.checkCanMove():
+		do_h_speed_calculation()
+	else:
+		velocity.x = 0.0 #move_toward(velocity.x, 0, h_speed_max)
+	
+	if Input.is_action_just_pressed("player_jump") && is_on_floor():
+		do_v_speed_calculation()
 	
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		
-	if direction && state_machine.checkCanMove():
-		do_h_speed_calculation()
-	else:
-		velocity.x = move_toward(velocity.x, 0, h_speed_max)
-	
-	if Input.is_action_just_pressed("player_jump") && is_on_floor():
-		do_v_speed_calculation()
-	move_and_slide()
+	do_sprite_flip()
 	do_animation()
+	move_and_slide()
+	
 
 func do_h_speed_calculation():
 	if abs(velocity.x) < h_speed_max:
@@ -57,16 +62,9 @@ func do_h_speed_calculation():
 
 func do_v_speed_calculation():
 	var x = clamp((abs(velocity.x) / 300), 0.0, 1.0)
-	print("x ", x)
 	var v_speed = -velocity.x  * (velocity.x/v_speed_init) + v_speed_init
 	v_speed = clamp(v_speed, v_speed_min, v_speed_init) 
-
-	print("V ", v_speed)
-	print("H ", velocity.x)
 	velocity.y = - v_speed
-	print("Velocity v ", velocity.y)
-	
-
 
 
 func do_sprite_flip():
@@ -79,7 +77,6 @@ func do_sprite_flip():
 
 # @brief Select current animation based on CharacterBody2D
 func do_animation():
-	do_sprite_flip()
 	# Use velocity vector to blend animations whit the animation tree
 	animation_tree.set("parameters/Move/blend_position", direction.x) 
 
