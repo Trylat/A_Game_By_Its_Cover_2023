@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfy0058sr5wjd"]
+
+[ext_resource type="PackedScene" uid="uid://67pdasueyci3" path="res://player/player.tscn" id="1_ipgfw"]
+[ext_resource type="TileSet" uid="uid://h5kkjm0tjfs2" path="res://new_tile_set.tres" id="2_xpkk2"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_ipgfw")]
+position = Vector2(11, -106)
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource("2_xpkk2")
+format = 2
+layer_0/tile_data = PackedInt32Array(-2, 393217, 0, -1, 393217, 0, -65536, 393217, 0, -65535, 327681, 9, -65533, 393217, 1, -65532, 393217, 0, -65531, 393217, 9, -65530, 393217, 7, -65529, 393217, 0, -65528, 327681, 9, 8, 393217, 4, 7, 393217, 5, 6, 393217, 5, 5, 393217, 5, 4, 393217, 5, 3, 393217, 6, 1, 393217, 4, 0, 393217, 5, 65535, 393217, 5, 65534, 393217, 5, 65533, 393217, 6, -3, 393217, 1, -131066, 393217, 2, -196602, 327681, 9, -196603, 393217, 1, -131067, 393217, 3, -327677, 393217, 4, -327678, 393217, 9, -327679, 393217, 7, -327680, 393217, 7, -262145, 393217, 1, -196609, 393217, 6, -262144, 393217, 5, -262143, 393217, 5, -262142, 393217, 4)
