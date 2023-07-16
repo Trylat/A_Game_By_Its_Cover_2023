@@ -23,7 +23,7 @@ func _ready():
 	animation_tree.active = true
 
 
-func _process(delta):
+func _process(_delta):
 	do_animation()	
 	
 
@@ -98,9 +98,10 @@ func do_hiss():
 			spawnPoint = area as LampPost
 			spawnPoint.play_animation_shiny();
 		elif (area is FogArea):
-			area.on_hiss()
+			var fogArea: FogArea = area as FogArea
+			fogArea.on_hiss()
 
-func _on_pickup_area_2d_area_entered(area):
+func _on_pickup_area_2d_area_entered(area: Area2D):
 	if (area is MoonFragment):
 		print("Finish the level/Moon fragment count++")
 	elif (area is Light):

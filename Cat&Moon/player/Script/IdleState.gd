@@ -8,7 +8,7 @@ extends State
 var is_walking = false
 var is_running = false
 
-func state_process(delta):
+func state_process(_delta):
 	if !character.is_on_floor():
 		next_state = air_state
 	if is_running:
