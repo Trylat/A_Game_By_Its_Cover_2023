@@ -99,3 +99,7 @@ func do_hiss():
 func _on_pickup_area_2d_area_entered(area):
 	if (area is MoonFragment):
 		print("Finish the level/Moon fragment count++")
+	elif (area is Light):
+		var light = area as Light
+		light.turn_on()
+		print("Light pickup")

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dhsp0edhnsiwu"
-path="res://.godot/imported/moon_fragment_spritesheet.png-3aa275d914db99a203b80057194a5a21.ctex"
+path="res://.godot/imported/moon_fragment_spritesheet.png-941af9ca3b4670ebb571b741cac2d9db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://moon_fragment/moon_fragment_spritesheet.png"
-dest_files=["res://.godot/imported/moon_fragment_spritesheet.png-3aa275d914db99a203b80057194a5a21.ctex"]
+source_file="res://collectibles/moon_fragment/moon_fragment_spritesheet.png"
+dest_files=["res://.godot/imported/moon_fragment_spritesheet.png-941af9ca3b4670ebb571b741cac2d9db.ctex"]
 
 [params]
 

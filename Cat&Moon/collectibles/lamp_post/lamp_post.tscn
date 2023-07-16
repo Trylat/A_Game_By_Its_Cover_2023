@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://canuhtr6uyalt"]
 
-[ext_resource type="Script" path="res://lamp_post/lamp_post.gd" id="1_6m4se"]
-[ext_resource type="Texture2D" uid="uid://db45km8m4cbln" path="res://lamp_post/lamp_post_spritesheet.png" id="2_mv03u"]
+[ext_resource type="Script" path="res://collectibles/lamp_post/lamp_post.gd" id="1_6m4se"]
+[ext_resource type="Texture2D" uid="uid://db45km8m4cbln" path="res://collectibles/lamp_post/lamp_post_spritesheet.png" id="2_mv03u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1f5xo"]
 size = Vector2(8, 32)
