@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://ctg6fhfps3g8h"]
+
+[ext_resource type="Script" path="res://collectibles/lights/light.gd" id="1_4o1qt"]
+[ext_resource type="Texture2D" uid="uid://l0tytgpeucm5" path="res://collectibles/lights/light_bulb/light_bulb_spritesheet.png" id="1_cj2l0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7m62o"]
+radius = 6.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pt5vt"]
+atlas = ExtResource("1_cj2l0")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ecbjd"]
+atlas = ExtResource("1_cj2l0")
+region = Rect2(0, 16, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rxawk"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pt5vt")
+}],
+"loop": true,
+"name": &"off",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ecbjd")
+}],
+"loop": true,
+"name": &"on",
+"speed": 5.0
+}]
+
+[node name="LightBulb" type="Area2D"]
+script = ExtResource("1_4o1qt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_7m62o")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_rxawk")
+animation = &"on"
