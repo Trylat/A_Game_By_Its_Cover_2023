@@ -26,7 +26,7 @@ func state_input(event : InputEvent):
 
 func idle():
 	# Look for input that are already pressed
-	if Input.is_action_pressed("player_walk_left") || Input.is_action_pressed("player_walk_right"):
+	if character.direction.x:
 		is_walking = true
 		if Input.is_action_pressed("player_run"):
 			is_running = true

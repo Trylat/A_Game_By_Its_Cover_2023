@@ -35,9 +35,10 @@ func _physics_process(delta):
 
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
-	if direction != Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down"):
+	if Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down"):
 		direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
-
+	else :
+		direction = Vector2.ZERO
 
 	if direction.x && state_machine.checkCanMove():
 		do_h_speed_calculation()
@@ -79,7 +80,7 @@ func do_sprite_flip():
 # @brief Select current animation based on CharacterBody2D
 func do_animation():
 	# Use velocity vector to blend animations whit the animation tree
-	animation_tree.set("parameters/Move/blend_position", direction.x) 
+	animation_tree.set("parameters/Move/blend_position", velocity) 
 
 
 # @brief Manage inputs for hiss and do actions accordingly.
