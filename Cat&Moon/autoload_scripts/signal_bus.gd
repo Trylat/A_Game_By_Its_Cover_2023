@@ -16,3 +16,4 @@ because we decided to use const strings values instead of the signal.
 extends Node
 
 signal OnNewSpawnPoint
+signal OnMoonFragmentCollected
