@@ -22,6 +22,7 @@ buses/default_bus_layout="res://assetsLibrary/EasyMenus/default_bus_layout.tres"
 [autoload]
 
 MenuTemplateManager="*res://assetsLibrary/EasyMenus/Nodes/menu_template_manager.tscn"
+SignalBus="*res://autoload_scripts/signal_bus.gd"
 
 [debug]
 
