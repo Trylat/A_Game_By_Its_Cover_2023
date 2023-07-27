@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bedpak08tclvo"]
+[gd_scene load_steps=23 format=3 uid="uid://bedpak08tclvo"]
 
 [ext_resource type="TileSet" uid="uid://h5kkjm0tjfs2" path="res://Tiles/new_tile_set.tres" id="1_jw8do"]
 [ext_resource type="TileSet" uid="uid://g65c3x1ut48q" path="res://Tiles/cloudset.tres" id="2_0mu1u"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://d4hsv6ditet2d" path="res://Tiles/smallscape.png" id="11_ywltt"]
 [ext_resource type="Texture2D" uid="uid://brlehaa4026pf" path="res://Tiles/Eiffel tower.png" id="12_lc8ib"]
 [ext_resource type="Texture2D" uid="uid://e3bjxfy486ie" path="res://Tiles/eclipse level 2.png" id="13_oso4x"]
+[ext_resource type="PackedScene" uid="uid://c4fx4gedeui3f" path="res://collectibles/moon_fragment/moon_fragment.tscn" id="14_wooy2"]
 
 [sub_resource type="Curve2D" id="Curve2D_aafkg"]
 resource_local_to_scene = true
@@ -404,3 +405,7 @@ texture = ExtResource("12_lc8ib")
 z_index = -1
 position = Vector2(240, -856)
 texture = ExtResource("13_oso4x")
+
+[node name="MoonFragment" parent="." instance=ExtResource("14_wooy2")]
+position = Vector2(14, -883)
+scale = Vector2(3, 3)

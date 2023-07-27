@@ -137,6 +137,7 @@ position = Vector2(-256, -608)
 
 [node name="MoonFragment" parent="." instance=ExtResource("9_0g72f")]
 position = Vector2(1112, -552)
+scale = Vector2(3, 3)
 
 [node name="LampPost2" parent="." instance=ExtResource("5_tvune")]
 position = Vector2(-168, -409)
