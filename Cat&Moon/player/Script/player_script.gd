@@ -1,5 +1,6 @@
 class_name Player
 extends CharacterBody2D
+signal OnNewSpawnPoint
 
 
 @onready var Sprite: Sprite2D = $Sprite2D
@@ -13,12 +14,13 @@ extends CharacterBody2D
 @export var v_speed_init : float = 400
 @export var v_speed_min : float = 200
 
+@export var spawnPoint: LampPost = null
+@export var nbLightsCollected: int = 0
+
 var direction = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var playback : AnimationNodeStateMachinePlayback
-var spawnPoint: LampPost = null
-var nbLightsCollected: int = 0
 var is_running = false 
 var last_dir = 0.0
 var vel_scale = Vector2.ZERO
@@ -39,10 +41,7 @@ func _physics_process(delta):
 
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
-	if Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down"):
-		direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
-	else :
-		direction = Vector2.ZERO
+	direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 
 	if direction.x && state_machine.checkCanMove():
 		do_h_speed_calculation()
@@ -106,6 +105,7 @@ func do_hiss():
 	if(not Input.is_action_just_pressed("player_hiss")):
 		return
 
+	var isNewSpawnPointFounded: bool = false
 	for area in hissArea.get_overlapping_areas():
 		if (area is LampPost):
 			# Old spawn point
@@ -114,14 +114,19 @@ func do_hiss():
 			
 			# Newly founded spawn point
 			spawnPoint = area as LampPost
-			spawnPoint.play_animation_shiny();
+			isNewSpawnPointFounded = true
+
 		elif (area is FogArea):
 			var fogArea: FogArea = area as FogArea
 			fogArea.on_hiss()
 
+	if (isNewSpawnPointFounded):
+		spawnPoint.play_animation_shiny();
+		SignalBus.OnNewSpawnPoint.emit()
+
 func _on_pickup_area_2d_area_entered(area: Area2D):
 	if (area is MoonFragment):
-		print("Finish the level/Moon fragment count++")
+		SignalBus.OnMoonFragmentCollected.emit()
 	elif (area is Light):
 		var light = area as Light
 		if (not light.is_on()):

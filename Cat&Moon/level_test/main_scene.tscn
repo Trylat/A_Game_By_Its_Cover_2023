@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" path="res://level_test/main_scene.gd" id="1_kn1ea"]
 [ext_resource type="PackedScene" uid="uid://dq6tvhqcy2aps" path="res://assetsLibrary/EasyMenus/Scenes/main_menu.tscn" id="2_laxh6"]
+[ext_resource type="PackedScene" uid="uid://bfy0058sr5wjd" path="res://Test level 1.tscn" id="2_mc2x3"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://assetsLibrary/EasyMenus/Scenes/pause_menu.tscn" id="3_76a11"]
+
 [ext_resource type="Texture2D" uid="uid://fybio0voh83y" path="res://Tiles/Cityscape.png" id="4_wvoxn"]
 [ext_resource type="Texture2D" uid="uid://d4hsv6ditet2d" path="res://Tiles/smallscape.png" id="5_ds4b8"]
 [ext_resource type="Texture2D" uid="uid://cyx1h2oqoxyst" path="res://Tiles/PC Computer - RPG Maker MV - Starlit Sky.png" id="6_we5py"]
@@ -17,6 +19,7 @@ point_count = 20
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_kn1ea")
+levels = Array[PackedScene]([ExtResource("2_mc2x3"), ExtResource("3_ydqrc")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
