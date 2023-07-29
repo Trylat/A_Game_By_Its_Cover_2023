@@ -118,7 +118,7 @@ func do_hiss():
 		elif (area is FogArea):
 			var fogArea: FogArea = area as FogArea
 			fogArea.on_hiss()
-	$HissArea2D/AudioStreamPlayer.play()
+	$HissArea2D/HissSFX.play()
 
 func _on_pickup_area_2d_area_entered(area: Area2D):
 	if (area is MoonFragment):
