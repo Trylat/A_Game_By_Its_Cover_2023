@@ -41,10 +41,7 @@ func _physics_process(delta):
 
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
-	if Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down"):
-		direction = Input.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
-	else :
-		direction = Vector2.ZERO
+	direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 
 	if direction.x && state_machine.checkCanMove():
 		do_h_speed_calculation()
