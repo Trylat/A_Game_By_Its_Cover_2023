@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://dwybfh7m50xee"]
+[gd_scene load_steps=11 format=3 uid="uid://dwybfh7m50xee"]
 
 [ext_resource type="Script" path="res://level_test/main_scene.gd" id="1_kn1ea"]
 [ext_resource type="PackedScene" uid="uid://dq6tvhqcy2aps" path="res://assetsLibrary/EasyMenus/Scenes/main_menu.tscn" id="2_laxh6"]
 [ext_resource type="PackedScene" uid="uid://bfy0058sr5wjd" path="res://Test level 1.tscn" id="2_mc2x3"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://assetsLibrary/EasyMenus/Scenes/pause_menu.tscn" id="3_76a11"]
-
+[ext_resource type="PackedScene" uid="uid://bedpak08tclvo" path="res://Level 2.tscn" id="3_ydqrc"]
 [ext_resource type="Texture2D" uid="uid://fybio0voh83y" path="res://Tiles/Cityscape.png" id="4_wvoxn"]
 [ext_resource type="Texture2D" uid="uid://d4hsv6ditet2d" path="res://Tiles/smallscape.png" id="5_ds4b8"]
 [ext_resource type="Texture2D" uid="uid://cyx1h2oqoxyst" path="res://Tiles/PC Computer - RPG Maker MV - Starlit Sky.png" id="6_we5py"]
@@ -91,7 +91,7 @@ process_mode = 3
 curve = SubResource("Curve2D_p6h4x")
 
 [node name="PathFollow2D" type="PathFollow2D" parent="ExportLevel3/Path2D"]
-position = Vector2(-7.84139, -1.6037)
+position = Vector2(-7.84136, -1.60368)
 rotation = -2.57669
 progress = 10.4753
 
