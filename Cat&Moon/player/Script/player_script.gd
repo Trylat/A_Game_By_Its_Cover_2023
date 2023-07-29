@@ -24,6 +24,7 @@ var playback : AnimationNodeStateMachinePlayback
 var is_running = false 
 var last_dir = 0.0
 var vel_scale = Vector2.ZERO
+var is_alive = true
 
 func _ready():
 	animation_tree.active = true
@@ -34,6 +35,8 @@ func _process(_delta):
 	
 
 func _physics_process(delta):
+	if !is_alive:
+		death_state()
 	h_speed_max = state_machine.current_state.h_speed_max
 	do_movement(delta)
 	do_hiss()
@@ -104,7 +107,7 @@ func do_animation():
 func do_hiss():
 	if(not Input.is_action_just_pressed("player_hiss")):
 		return
-
+	$HissArea2D/HissSFX.play()
 	var isNewSpawnPointFounded: bool = false
 	for area in hissArea.get_overlapping_areas():
 		if (area is LampPost):
@@ -133,3 +136,7 @@ func _on_pickup_area_2d_area_entered(area: Area2D):
 			light.turn_on()
 			nbLightsCollected += 1
 			StaticFog.on_light_collected(nbLightsCollected)
+
+
+func death_state():
+	pass
