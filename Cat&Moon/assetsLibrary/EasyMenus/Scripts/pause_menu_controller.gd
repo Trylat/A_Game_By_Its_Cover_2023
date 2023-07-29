@@ -38,7 +38,7 @@ func _on_quit_button_pressed():
 
 func _on_back_to_menu_button_pressed():
 	close_pause_menu()
-	emit_signal("back_to_main_pressed")
+	back_to_main_pressed.emit()
 
 func _input(event: InputEvent):
 	if (event.is_action_pressed("ui_cancel") or event.is_action_pressed("pause")) and visible and !options_menu.visible:

@@ -15,7 +15,8 @@ func _input(event: InputEvent) -> void:
 			echo_timer.stop()
 
 func _on_echo_timer_timeout():
-	Input.parse_input_event(echo_event)
+	if (echo_event != null):
+		Input.parse_input_event(echo_event)
 
 func _on_waiting_timer_timeout():
 	echo_timer.start()

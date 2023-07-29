@@ -1,16 +1,33 @@
 class_name Light extends Area2D
 
-@onready var animatedsprite: AnimatedSprite2D = $AnimatedSprite2D
+
+enum AnimationEnum {
+	OFF,
+	ON
+}
+
+const animationNames: Dictionary = {
+	AnimationEnum.OFF: "off",
+	AnimationEnum.ON: "on"
+}
+
+@export var currentAnimation: AnimationEnum = AnimationEnum.OFF
+@onready var animatedSprite: AnimatedSprite2D = $AnimatedSprite2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	self.turn_off()
+	play_animation(currentAnimation)
 
 func turn_off():
-	animatedsprite.play("off")
+	play_animation(AnimationEnum.OFF)
 
 func turn_on():
-	animatedsprite.play("on")
+	play_animation(AnimationEnum.ON)
 
 func is_on() -> bool:
-	return animatedsprite.animation == "on"
+	return currentAnimation == AnimationEnum.ON
+
+func play_animation(animation: AnimationEnum):
+	currentAnimation = animation
+	animatedSprite.play(animationNames[currentAnimation])
+		
