@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bfy0058sr5wjd"]
+[gd_scene load_steps=19 format=3 uid="uid://bfy0058sr5wjd"]
 
 [ext_resource type="TileSet" uid="uid://h5kkjm0tjfs2" path="res://Tiles/new_tile_set.tres" id="1_fuk2j"]
 [ext_resource type="PackedScene" uid="uid://67pdasueyci3" path="res://player/player.tscn" id="1_ipgfw"]
@@ -13,6 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://fybio0voh83y" path="res://Tiles/Cityscape.png" id="11_edcwk"]
 [ext_resource type="Texture2D" uid="uid://d4hsv6ditet2d" path="res://Tiles/smallscape.png" id="12_dyn1v"]
 [ext_resource type="Texture2D" uid="uid://brlehaa4026pf" path="res://Tiles/Eiffel tower.png" id="13_gnv4n"]
+[ext_resource type="Texture2D" uid="uid://bk0wwyfnafu3i" path="res://Tiles/eclipse level 1.png" id="14_ibqdc"]
 
 [sub_resource type="Curve2D" id="Curve2D_saobt"]
 _data = {
@@ -20,14 +21,14 @@ _data = {
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_2wlem"]
+[sub_resource type="Curve2D" id="Curve2D_skjuk"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -344, -136, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_e6stj"]
+[sub_resource type="Curve2D" id="Curve2D_4wr62"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -112, 0, 0, 0, 0, 0, -344, 0)
@@ -71,7 +72,8 @@ layer_0/tile_data = PackedInt32Array(-851977, 131073, 0, -851978, 65537, 0, -851
 position = Vector2(-80, -16)
 
 [node name="LampPost" parent="." instance=ExtResource("5_tvune")]
-position = Vector2(528, -16)
+position = Vector2(528, -25)
+scale = Vector2(1.5, 1.5)
 
 [node name="LightBulb" parent="." instance=ExtResource("6_7ic72")]
 position = Vector2(328, -56)
@@ -82,7 +84,7 @@ curve = SubResource("Curve2D_saobt")
 
 [node name="MovingFog2" parent="." instance=ExtResource("4_2a64d")]
 position = Vector2(272, -352)
-curve = SubResource("Curve2D_2wlem")
+curve = SubResource("Curve2D_skjuk")
 
 [node name="LightBulb2" parent="." instance=ExtResource("6_7ic72")]
 position = Vector2(1000, -16)
@@ -125,7 +127,7 @@ numberOfLightsToDestroy = 7
 
 [node name="MovingFog3" parent="." instance=ExtResource("4_2a64d")]
 position = Vector2(376, -432)
-curve = SubResource("Curve2D_e6stj")
+curve = SubResource("Curve2D_4wr62")
 
 [node name="LightBulb5" parent="." instance=ExtResource("6_7ic72")]
 position = Vector2(368, -328)
@@ -135,9 +137,11 @@ position = Vector2(-256, -608)
 
 [node name="MoonFragment" parent="." instance=ExtResource("9_0g72f")]
 position = Vector2(1112, -552)
+scale = Vector2(3, 3)
 
 [node name="LampPost2" parent="." instance=ExtResource("5_tvune")]
-position = Vector2(-168, -400)
+position = Vector2(-168, -409)
+scale = Vector2(1.5, 1.5)
 
 [node name="PcComputer-RpgMakerMv-StarlitSky" type="Sprite2D" parent="."]
 z_index = -10
@@ -148,6 +152,12 @@ texture = ExtResource("10_551vv")
 [node name="PcComputer-RpgMakerMv-StarlitSky5" type="Sprite2D" parent="."]
 z_index = -10
 position = Vector2(1571, 398)
+scale = Vector2(0.958333, 0.958333)
+texture = ExtResource("10_551vv")
+
+[node name="PcComputer-RpgMakerMv-StarlitSky6" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(483, 391)
 scale = Vector2(0.958333, 0.958333)
 texture = ExtResource("10_551vv")
 
@@ -230,3 +240,14 @@ position = Vector2(-560, -176)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
 position = Vector2(1688, -72)
 shape = SubResource("SegmentShape2D_rf8vf")
+
+[node name="Star2" parent="." instance=ExtResource("8_uhvcg")]
+position = Vector2(-278, -429)
+
+[node name="LightBulb6" parent="." instance=ExtResource("6_7ic72")]
+position = Vector2(-12, -266)
+
+[node name="EclipseLevel1" type="Sprite2D" parent="."]
+z_index = -1
+position = Vector2(981, -568)
+texture = ExtResource("14_ibqdc")
