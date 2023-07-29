@@ -5,6 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://bfy0058sr5wjd" path="res://Test level 1.tscn" id="2_mc2x3"]
 [ext_resource type="PackedScene" uid="uid://rw7gdui8lu3n" path="res://assetsLibrary/EasyMenus/Scenes/pause_menu.tscn" id="3_76a11"]
 [ext_resource type="PackedScene" uid="uid://bedpak08tclvo" path="res://Level 2.tscn" id="3_ydqrc"]
+[ext_resource type="Texture2D" uid="uid://fybio0voh83y" path="res://Tiles/Cityscape.png" id="4_wvoxn"]
+[ext_resource type="Texture2D" uid="uid://d4hsv6ditet2d" path="res://Tiles/smallscape.png" id="5_ds4b8"]
+[ext_resource type="Texture2D" uid="uid://cyx1h2oqoxyst" path="res://Tiles/PC Computer - RPG Maker MV - Starlit Sky.png" id="6_we5py"]
+[ext_resource type="Texture2D" uid="uid://b0j4xgpr5eltg" path="res://Tiles/export level 3.png" id="7_8njsd"]
+
+[sub_resource type="Curve2D" id="Curve2D_p6h4x"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 4, 0, 0, 0, 0, -70, -41, 0, 0, 0, 0, -253, -41, 0, 0, 0, 0, -348, -12, 0, 0, 0, 0, -426, 48, 0, 0, 0, 0, -515, 148, 0, 0, 0, 0, -531, 275, 0, 0, 0, 0, -558, 421, 0, 0, 0, 0, -536, 564, 0, 0, 0, 0, -424, 642, 0, 0, 0, 0, -236, 671, 0, 0, 0, 0, -69, 659, 0, 0, 0, 0, 30, 586, 0, 0, 0, 0, 85, 504, 0, 0, 0, 0, 123, 409, 0, 0, 0, 0, 168, 304, 0, 0, 0, 0, 163, 182, 0, 0, 0, 0, 131, 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 20
 
 [node name="main_scene" type="Node2D"]
 script = ExtResource("1_kn1ea")
