@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://d0e2ibce0u72e"]
+[gd_scene load_steps=6 format=3 uid="uid://d0e2ibce0u72e"]
 
 [ext_resource type="Script" path="res://fog/moving_fog.gd" id="2_70ibo"]
 [ext_resource type="PackedScene" uid="uid://c64ho6ntcg2vg" path="res://fog/fog_area.tscn" id="2_ln1k1"]
 [ext_resource type="AudioStream" uid="uid://bbdbx14p4o1du" path="res://musics/evil_fog_whispers.mp3" id="3_mf1k1"]
+[ext_resource type="AudioStream" uid="uid://ct0lrlnkn63t0" path="res://musics/cloud_catkill.mp3" id="4_8rcg8"]
 
 [sub_resource type="Curve2D" id="Curve2D_gixgo"]
 resource_local_to_scene = true
@@ -22,11 +23,16 @@ rotates = false
 
 [node name="FogArea" parent="PathFollow2D" instance=ExtResource("2_ln1k1")]
 
-[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="PathFollow2D/FogArea"]
+[node name="EvilCloudWisperSXF" type="AudioStreamPlayer2D" parent="PathFollow2D/FogArea"]
 stream = ExtResource("3_mf1k1")
 volume_db = 6.679
-max_distance = 500.0
+max_distance = 200.0
 attenuation = 1.93188
+bus = &"SFX"
+
+[node name="CloudDamageFromCatSFX" type="AudioStreamPlayer2D" parent="PathFollow2D/FogArea"]
+stream = ExtResource("4_8rcg8")
+attenuation = 1.68179
 bus = &"SFX"
 
 [connection signal="hiss_received" from="PathFollow2D/FogArea" to="." method="_on_fog_area_hiss_received"]

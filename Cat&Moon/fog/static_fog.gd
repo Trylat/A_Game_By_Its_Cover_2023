@@ -2,7 +2,8 @@ class_name StaticFog extends Area2D
 
 # The number of collected lights by the player to destroy this Fog.
 @export var numberOfLightsToDestroy: int = 0
-
+@export var wisper_sfx : AudioStreamPlayer2D
+@export var death_sfx : AudioStreamPlayer2D
 static var allInstances: Array[StaticFog]
 
 func _enter_tree():
@@ -23,5 +24,7 @@ static func on_light_collected(nbLightCollected: int):
 		if (fog.numberOfLightsToDestroy <= nbLightCollected):
 			fog.queue_free()
 
+
 func _ready():
 	($AnimatedSprite2D as AnimatedSprite2D).play("default")
+	wisper_sfx.play()
