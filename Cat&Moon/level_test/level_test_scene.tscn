@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://iphjdoh14xn"]
+[gd_scene load_steps=10 format=3 uid="uid://iphjdoh14xn"]
 
 [ext_resource type="Texture2D" uid="uid://x2dcsui3e8m1" path="res://level_test/level_test_tileset.png" id="1_r7xvm"]
 [ext_resource type="PackedScene" uid="uid://67pdasueyci3" path="res://player/player.tscn" id="2_f4kjm"]
 [ext_resource type="PackedScene" uid="uid://canuhtr6uyalt" path="res://collectibles/lamp_post/lamp_post.tscn" id="3_tq2oa"]
 [ext_resource type="PackedScene" uid="uid://c4fx4gedeui3f" path="res://collectibles/moon_fragment/moon_fragment.tscn" id="4_njuh7"]
 [ext_resource type="PackedScene" uid="uid://d0pekn2lsn2cf" path="res://random_number_generator/random_number_generator.tscn" id="5_rr3g4"]
+[ext_resource type="PackedScene" uid="uid://d0e2ibce0u72e" path="res://fog/moving_fog.tscn" id="6_f8lmq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_in803"]
 texture = ExtResource("1_r7xvm")
@@ -117,6 +118,13 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 sources/4 = SubResource("TileSetAtlasSource_in803")
 
+[sub_resource type="Curve2D" id="Curve2D_5pola"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 98, -15.1111, 0, 0, 0, 0, 92, -127.758, 0, 0, 0, 0, -55, -136, 0, 0, 0, 0, 10, -17.8586, 0, 0, 0, 0, 98, -13.7374)
+}
+point_count = 5
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -141,3 +149,8 @@ position = Vector2(308, -32)
 position = Vector2(168, -24)
 
 [node name="RandomNumberGenerator" parent="." instance=ExtResource("5_rr3g4")]
+
+[node name="MovingFog" parent="." instance=ExtResource("6_f8lmq")]
+position = Vector2(271, 56)
+scale = Vector2(1, 0.727941)
+curve = SubResource("Curve2D_5pola")

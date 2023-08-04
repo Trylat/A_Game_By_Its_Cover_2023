@@ -1,9 +1,10 @@
-[gd_scene load_steps=61 format=3 uid="uid://67pdasueyci3"]
+[gd_scene load_steps=63 format=3 uid="uid://67pdasueyci3"]
 
 [ext_resource type="Script" path="res://player/Script/player_script.gd" id="1_21cuq"]
 [ext_resource type="Texture2D" uid="uid://d3ytyd3d2kdef" path="res://player/Art/Jump_frames/chat_Sot_2.0.png" id="2_cw1ph"]
 [ext_resource type="Texture2D" uid="uid://b2mt718atpw0q" path="res://player/Art/chat_Tombe.png" id="2_d3p0s"]
 [ext_resource type="Texture2D" uid="uid://c2v0j4eiihslg" path="res://player/Art/spritesheet_idle.png" id="2_s14sr"]
+[ext_resource type="AudioStream" uid="uid://nid0iukfgfg7" path="res://musics/Cat_hiss.mp3" id="3_4j562"]
 [ext_resource type="Texture2D" uid="uid://bvlou3fcxrwk7" path="res://player/Art/idle_player_spritesheet-Sheet.png" id="3_lnbgd"]
 [ext_resource type="Texture2D" uid="uid://bwqekfwwhvbs" path="res://player/Art/run_player_spritesheet-Sheet.png" id="3_tgpyr"]
 [ext_resource type="Texture2D" uid="uid://bxk7ekv4esxkg" path="res://player/Art/walk_player_spritesheet-Sheet.png" id="4_w8wcp"]
@@ -21,6 +22,7 @@
 [ext_resource type="Script" path="res://player/Script/JumpState.gd" id="13_5unrw"]
 [ext_resource type="Texture2D" uid="uid://sfwefqipgisx" path="res://player/Art/chat_marche_1.0.png" id="13_wkfwl"]
 [ext_resource type="Script" path="res://player/Script/PreviousStateDebugLabel.gd" id="16_jv2nc"]
+[ext_resource type="AudioStream" uid="uid://cq66xxbrydbkp" path="res://musics/cat_touchdown.mp3" id="23_j88to"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcfwu"]
 size = Vector2(20.53, 12)
@@ -908,6 +910,10 @@ zoom = Vector2(3, 3)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HissArea2D"]
 shape = SubResource("CircleShape2D_jn58y")
 
+[node name="HissSFX" type="AudioStreamPlayer" parent="HissArea2D"]
+stream = ExtResource("3_4j562")
+bus = &"SFX"
+
 [node name="PickupArea2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
@@ -957,9 +963,10 @@ long_jump_state = NodePath("../Jump")
 state_vector_modifier = Vector2(1.5, 1)
 h_speed_max = 300.0
 
-[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine")]
+[node name="Air" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine", "touchdown_sfx")]
 script = ExtResource("8_0wm1g")
 state_machine = NodePath("..")
+touchdown_sfx = NodePath("../../TouchdownSFX")
 h_speed_max = 100.0
 
 [node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine", "idlestate")]
@@ -984,6 +991,10 @@ offset_bottom = -31.0
 text = "Previous State : "
 script = ExtResource("16_jv2nc")
 state_machine = NodePath("../StateMachine")
+
+[node name="TouchdownSFX" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("23_j88to")
+bus = &"SFX"
 
 [connection signal="area_entered" from="PickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimationTree" to="StateMachine/Idle" method="_on_animation_tree_animation_finished"]

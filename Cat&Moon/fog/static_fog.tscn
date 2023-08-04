@@ -1,8 +1,23 @@
-[gd_scene load_steps=3 format=3 uid="uid://wayapputx2ho"]
+[gd_scene load_steps=5 format=3 uid="uid://wayapputx2ho"]
 
 [ext_resource type="PackedScene" uid="uid://c64ho6ntcg2vg" path="res://fog/fog_area.tscn" id="1_eg3ni"]
 [ext_resource type="Script" path="res://fog/static_fog.gd" id="2_gx8yt"]
+[ext_resource type="AudioStream" uid="uid://4vy1mwnbtpbq" path="res://musics/Cloud_death.mp3" id="3_l4aac"]
+[ext_resource type="AudioStream" uid="uid://bbdbx14p4o1du" path="res://musics/evil_fog_whispers.mp3" id="4_c1hvb"]
 
-[node name="StaticFog" instance=ExtResource("1_eg3ni")]
+[node name="StaticFog" node_paths=PackedStringArray("wisper_sfx", "death_sfx") instance=ExtResource("1_eg3ni")]
 script = ExtResource("2_gx8yt")
 numberOfLightsToDestroy = 0
+wisper_sfx = NodePath("EvilCloudWisperSFX")
+death_sfx = NodePath("CloudDeathSFX")
+
+[node name="CloudDeathSFX" type="AudioStreamPlayer2D" parent="." index="2"]
+stream = ExtResource("3_l4aac")
+volume_db = 3.904
+max_distance = 500.0
+bus = &"SFX"
+
+[node name="EvilCloudWisperSFX" type="AudioStreamPlayer2D" parent="." index="3"]
+stream = ExtResource("4_c1hvb")
+max_distance = 500.0
+bus = &"SFX"
