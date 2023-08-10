@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwqekfwwhvbs"
-path="res://.godot/imported/run_player_spritesheet-Sheet.png-bfc5c6e639fbdfd7b27508025e2c0a13.ctex"
+uid="uid://bbg6rp5pduii8"
+path="res://.godot/imported/chat_Sot_3.0.png-41b8a87bff6fa1af7125451d2ffc3ce6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/Art/run_player_spritesheet-Sheet.png"
-dest_files=["res://.godot/imported/run_player_spritesheet-Sheet.png-bfc5c6e639fbdfd7b27508025e2c0a13.ctex"]
+source_file="res://player/Art/Jump_frames/chat_Sot_3.0.png"
+dest_files=["res://.godot/imported/chat_Sot_3.0.png-41b8a87bff6fa1af7125451d2ffc3ce6.ctex"]
 
 [params]
 

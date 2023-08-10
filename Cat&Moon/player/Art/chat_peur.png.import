@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bxk7ekv4esxkg"
-path="res://.godot/imported/walk_player_spritesheet-Sheet.png-79ddca1605e0b7e618a8d35ede758e8c.ctex"
+uid="uid://da0t1b3f8fp3k"
+path="res://.godot/imported/chat_peur.png-e3e17862b0053dd8d4e19086e7693caa.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://player/Art/walk_player_spritesheet-Sheet.png"
-dest_files=["res://.godot/imported/walk_player_spritesheet-Sheet.png-79ddca1605e0b7e618a8d35ede758e8c.ctex"]
+source_file="res://player/Art/chat_peur.png"
+dest_files=["res://.godot/imported/chat_peur.png-e3e17862b0053dd8d4e19086e7693caa.ctex"]
 
 [params]
 
