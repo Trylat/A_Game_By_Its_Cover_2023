@@ -46,18 +46,23 @@ func _process(_delta):
 func _physics_process(delta):
 	if (isAlive):
 		h_speed_max = state_machine.current_state.h_speed_max
-		do_movement(delta)
+		process_inputs(delta)
 		do_sprite_flip()
 		do_hiss()
 		do_animation()
 	else:
-		self.velocity *= 0.98
+		self.velocity.x *= 0.98
 		angularVelocity *= 0.98
-		
+	
+	do_gravity(delta)
 	self.rotate(angularVelocity) 
 	move_and_slide()
 
-func do_movement(delta: float):
+func do_gravity(delta : float):
+	if not is_on_floor():
+		velocity.y += gravity * delta
+
+func process_inputs(delta: float):
 	# Get character movement direction vector based on player input
 	direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 
@@ -67,9 +72,7 @@ func do_movement(delta: float):
 		velocity.x = 0.0 #move_toward(velocity.x, 0, h_speed_max)
 	
 	
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
+
 
 func do_h_speed_calculation():
 	if abs(velocity.x) < h_speed_max:
