@@ -2,8 +2,9 @@ extends Node2D
 
 @export var levels: Array[PackedScene]
 
-@onready var pauseMenu: PauseMenuController = $CanvasLayer/PauseMenu as PauseMenuController
-@onready var mainMenu: MainMenuController = $CanvasLayer/MainMenu as MainMenuController
+@onready var pauseMenu := $CanvasLayer/PauseMenu as PauseMenuController
+@onready var mainMenu := $CanvasLayer/MainMenu as MainMenuController
+@onready var levelCompletedMenu := $CanvasLayer/LevelCompletedMenu as Control
 
 const savePath: String = "user://Save/"
 
@@ -15,9 +16,10 @@ var currentLevel: Node2D = null
 
 func _ready() -> void:
 	SignalBus.OnNewSpawnPoint.connect(save_game)
-	SignalBus.OnMoonFragmentCollected.connect(start_next_level)
+	SignalBus.OnMoonFragmentCollected.connect(_on_moon_fragment_collected)
 	SignalBus.onPlayerDeath.connect(_on_player_death)
 	pauseMenu.close_pause_menu()
+	levelCompletedMenu.hide()
 	get_tree().auto_accept_quit = false
 	get_tree().quit_on_go_back = false
 	if (not DirAccess.dir_exists_absolute(savePath)):
@@ -120,7 +122,13 @@ func _on_pause_menu_back_to_main_pressed():
 	else: 
 		mainMenu.disable_load_game_button()
 	mainMenu.open_main_menu()
-	
+
+func _on_moon_fragment_collected():
+	levelCompletedMenu.show()
+	await(get_tree().create_timer(5.0).timeout)
+	levelCompletedMenu.hide()
+	start_next_level()
+
 func _on_player_death():
 	await(get_tree().create_timer(5.0).timeout)
 	start_load_game()
