@@ -25,8 +25,8 @@ var levelCompleted := false
 var isImmortal := false
 var isAlive: bool = true
 var angularVelocity: float = 0.0
+var drag := 0.80
 
-var direction = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var playback : AnimationNodeStateMachinePlayback
@@ -51,12 +51,21 @@ func _physics_process(delta):
 		do_hiss()
 		do_animation()
 	else:
-		self.velocity.x *= 0.98
-		angularVelocity *= 0.98
+		do_drag()
 	
 	do_gravity(delta)
 	self.rotate(angularVelocity) 
 	move_and_slide()
+
+func do_drag():
+	self.velocity.x *= drag
+	angularVelocity *= drag
+	
+	if abs(velocity.x) < 10:
+		velocity.x = 0 
+	
+	if abs(angularVelocity) < 0.01:
+		angularVelocity = 0 
 
 func do_gravity(delta : float):
 	if not is_on_floor():
@@ -64,20 +73,20 @@ func do_gravity(delta : float):
 
 func process_inputs(delta: float):
 	# Get character movement direction vector based on player input
-	direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
+	var direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 
-	if direction.x && state_machine.checkCanMove():
-		do_h_speed_calculation()
+	if (sign(direction.x) == sign(velocity.x)) || \
+	   (velocity.x == 0) && \
+	   state_machine.checkCanMove():
+		do_h_speed_calculation(direction)
 	else:
-		velocity.x = 0.0 #move_toward(velocity.x, 0, h_speed_max)
+		do_drag()
+
+func do_h_speed_calculation(direction):
+	velocity.x += direction.x * abs(h_step_speed * state_machine.vector_modifier.x)
+	velocity.x = clamp(velocity.x, -h_speed_max, h_speed_max)
 	
 	
-
-
-func do_h_speed_calculation():
-	if abs(velocity.x) < h_speed_max:
-		velocity.x += direction.x * abs(h_step_speed * state_machine.vector_modifier.x)
-
 
 func do_v_speed_calculation():
 	var x = clamp((abs(velocity.x) / 300), 0.0, 1.0)
@@ -88,13 +97,11 @@ func do_v_speed_calculation():
 
 func do_sprite_flip():
 	# face sprite left or right
-	if direction.x > 0:
+	if velocity.x > 0:
 		Sprite.flip_h = false
 		Sprite.rotation = 0
-		last_dir = 1
-	elif direction.x < 0:
+	elif velocity.x < 0:
 		Sprite.flip_h = true
-		last_dir = -1
 
 
 # @brief Select current animation based on CharacterBody2D
@@ -154,7 +161,8 @@ func _on_pickup_area_2d_area_entered(area: Area2D):
 func kill() -> void:
 	if (isAlive && !isImmortal):
 		isAlive = false
-		angularVelocity = 0.2 * direction.x
+		angularVelocity = 0.001 * velocity.x
+		drag = 0.98
 		state_machine.switch_state(state_machine.states["dead"])
 		
 		var cam = $Camera2D as Camera2D

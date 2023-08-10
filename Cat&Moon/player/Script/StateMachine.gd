@@ -7,7 +7,6 @@ class_name StateMachine
 @export var animation_tree : AnimationTree
 
 var previous_state : State = null
-var previous_direction : Vector2 = Vector2.ZERO
 var current_state : State
 var states : Dictionary = {}
 var vector_modifier : Vector2 = Vector2(1.0, 1.0)
@@ -62,7 +61,6 @@ func switch_state(new_state : State):
 		current_state.on_exit()
 		current_state.next_state = null
 	
-	previous_direction = current_state.character.direction
 	previous_state = current_state
 	current_state = new_state
 	

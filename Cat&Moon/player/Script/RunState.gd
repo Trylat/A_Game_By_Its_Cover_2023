@@ -8,7 +8,6 @@ extends State
 
 var is_running = true
 var is_walking = true
-var direction = Vector2.ZERO
 
 func state_process(delta):
 	if !character.is_on_floor():
@@ -26,7 +25,7 @@ func state_input(event : InputEvent):
 
 func run(_delta):
 	# decide fallback state base on input
-	if character.direction.x == direction.x:
+	if abs(character.velocity.x) > 0.01:
 		is_walking = true
 		if Input.is_action_pressed("player_run") || is_running:
 			is_running = true
@@ -36,13 +35,6 @@ func run(_delta):
 		is_walking = false
 	
 	character.is_running = is_running
-	
-	
-
-
-func on_enter():
-	direction = character.direction
-
 
 func on_exit():
 	is_running = true

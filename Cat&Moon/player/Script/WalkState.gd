@@ -8,7 +8,6 @@ extends State
 
 var is_running = false
 var is_walking = true
-var direction : Vector2 = Vector2.ZERO
 
 func state_process(_delta):
 	if !character.is_on_floor():
@@ -33,23 +32,14 @@ func jump():
 
 func walk():
 	# Get character movement direction vector based on player input
-	if character.direction.x != direction.x:
-		is_walking = false
-	if direction.x:
+	if abs(character.velocity.x) > 0.1:
+		is_walking = true
 		if Input.is_action_pressed("player_run"):
 			is_running = true
 	else:
 		is_walking = false
-
-
-func on_enter():
-	if state_machine.previous_state != jump_state:
-		direction.x = character.direction.x
-	else:
-		direction.x = state_machine.previous_direction.x
-
+		is_running = false
 
 func on_exit():
 	is_running = false 
 	is_walking = true
-	direction = Vector2.ZERO

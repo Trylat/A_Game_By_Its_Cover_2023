@@ -748,12 +748,14 @@ states/Start/position = Vector2(136, 208)
 states/dead/node = SubResource("AnimationNodeAnimation_wp4dd")
 states/dead/position = Vector2(500, 153)
 transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_u1bkq"), "Move", "JumpStart", SubResource("AnimationNodeStateMachineTransition_vukpt"), "JumpStart", "Move", SubResource("AnimationNodeStateMachineTransition_ij7ip"), "Move", "dead", SubResource("AnimationNodeStateMachineTransition_m61o4"), "JumpStart", "dead", SubResource("AnimationNodeStateMachineTransition_l2iu0")]
-graph_offset = Vector2(-50, 65)
+graph_offset = Vector2(-50, 75.9474)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_21cuq")
 h_speed_max = 100.0
 h_step_speed = 10.0
+v_speed_init = 415.0
+v_speed_min = 215.0
 deadSounds = Array[AudioStream]([ExtResource("2_8itih"), ExtResource("3_7ytfg"), ExtResource("4_dg6n2")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -811,7 +813,6 @@ air_state = NodePath("../Air")
 walking_state = NodePath("../Walk")
 running_state = NodePath("../Run")
 high_jump_state = NodePath("../Jump")
-h_speed_max = 0.01
 
 [node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "running_state", "jump_state", "state_machine")]
 script = ExtResource("11_xdl2r")
@@ -834,12 +835,13 @@ h_speed_max = 300.0
 script = ExtResource("8_0wm1g")
 state_machine = NodePath("..")
 touchdown_sfx = NodePath("../../TouchdownSFX")
-h_speed_max = 100.0
+h_speed_max = 300.0
 
 [node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine", "idlestate")]
 script = ExtResource("13_5unrw")
 state_machine = NodePath("..")
 idlestate = NodePath("../Idle")
+h_speed_max = 300.0
 
 [node name="Dead" type="Node" parent="StateMachine"]
 script = ExtResource("18_5032o")
