@@ -17,6 +17,10 @@ signal OnNewSpawnPoint
 @export var spawnPoint: LampPost = null
 @export var nbLightsCollected: int = 0
 
+@export var deadSounds: Array[AudioStream]
+@onready var deadAudioPlayer := $DeadAudioStreamPlayer2D as AudioStreamPlayer2D
+@onready var hissSfx := $HissArea2D/HissSFX as AudioStreamPlayer
+
 var levelCompleted := false
 var isImmortal := false
 var isAlive: bool = true
@@ -111,7 +115,7 @@ func do_animation():
 func do_hiss():
 	if(not Input.is_action_just_pressed("player_hiss")):
 		return
-	$HissArea2D/HissSFX.play()
+	hissSfx.play()
 	var isNewSpawnPointFounded: bool = false
 	for area in hissArea.get_overlapping_areas():
 		if (area is LampPost):
@@ -155,6 +159,9 @@ func kill() -> void:
 		self.remove_child(cam)
 		self.get_parent().add_child(cam)
 		cam.global_position = camPosition
+		
+		deadAudioPlayer.stream = deadSounds.pick_random()
+		deadAudioPlayer.play()
 		
 		SignalBus.onPlayerDeath.emit()
 

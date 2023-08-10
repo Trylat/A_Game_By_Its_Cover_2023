@@ -1,10 +1,13 @@
-[gd_scene load_steps=61 format=3 uid="uid://67pdasueyci3"]
+[gd_scene load_steps=64 format=3 uid="uid://67pdasueyci3"]
 
 [ext_resource type="Script" path="res://player/Script/player_script.gd" id="1_21cuq"]
+[ext_resource type="AudioStream" uid="uid://dppexhhg4528v" path="res://musics/cat_falling_to_deth.mp3" id="2_8itih"]
 [ext_resource type="Texture2D" uid="uid://d3ytyd3d2kdef" path="res://player/Art/Jump_frames/chat_Sot_2.0.png" id="2_cw1ph"]
 [ext_resource type="Texture2D" uid="uid://b2mt718atpw0q" path="res://player/Art/chat_Tombe.png" id="2_d3p0s"]
 [ext_resource type="Texture2D" uid="uid://c2v0j4eiihslg" path="res://player/Art/spritesheet_idle.png" id="2_s14sr"]
 [ext_resource type="AudioStream" uid="uid://nid0iukfgfg7" path="res://musics/Cat_hiss.mp3" id="3_4j562"]
+[ext_resource type="AudioStream" uid="uid://ct0lrlnkn63t0" path="res://musics/cloud_catkill.mp3" id="3_7ytfg"]
+[ext_resource type="AudioStream" uid="uid://cx5fnykmr0aq8" path="res://musics/damaged_cat.mp3" id="4_dg6n2"]
 [ext_resource type="Texture2D" uid="uid://c47b85818815g" path="res://player/Art/spritesheet_walk.png" id="6_5t6pd"]
 [ext_resource type="Script" path="res://player/Script/StateMachine.gd" id="6_bmnu2"]
 [ext_resource type="Script" path="res://player/Script/IdleState.gd" id="7_5ni0x"]
@@ -751,6 +754,7 @@ graph_offset = Vector2(-50, 65)
 script = ExtResource("1_21cuq")
 h_speed_max = 100.0
 h_step_speed = 10.0
+deadSounds = Array[AudioStream]([ExtResource("2_8itih"), ExtResource("3_7ytfg"), ExtResource("4_dg6n2")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(-0.01, 0.01)
@@ -862,6 +866,9 @@ state_machine = NodePath("../StateMachine")
 
 [node name="TouchdownSFX" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("23_j88to")
+bus = &"SFX"
+
+[node name="DeadAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 bus = &"SFX"
 
 [connection signal="area_entered" from="PickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]

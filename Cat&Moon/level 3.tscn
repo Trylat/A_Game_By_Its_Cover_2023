@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://5ho57u833q8f"]
+[gd_scene load_steps=25 format=3 uid="uid://5ho57u833q8f"]
 
 [ext_resource type="TileSet" uid="uid://h5kkjm0tjfs2" path="res://Tiles/new_tile_set.tres" id="1_2nxnc"]
 [ext_resource type="TileSet" uid="uid://g65c3x1ut48q" path="res://Tiles/cloudset.tres" id="2_jdoun"]
@@ -12,57 +12,58 @@
 [ext_resource type="PackedScene" uid="uid://canuhtr6uyalt" path="res://collectibles/lamp_post/lamp_post.tscn" id="10_nkxbh"]
 [ext_resource type="PackedScene" uid="uid://ctg6fhfps3g8h" path="res://collectibles/lights/light_bulb/light_bulb.tscn" id="11_v5l7q"]
 [ext_resource type="PackedScene" uid="uid://efovypnais1a" path="res://collectibles/lights/star/star.tscn" id="12_tveff"]
+[ext_resource type="AudioStream" uid="uid://821dxp4l574p" path="res://musics/final_drama_music.mp3" id="13_c1jak"]
 
-[sub_resource type="Curve2D" id="Curve2D_235tn"]
+[sub_resource type="Curve2D" id="Curve2D_poxu7"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -346.667, 2.66667, 0, 0, 0, 0, -345.667, -272, 0, 0, 0, 0, -346.667, -2.66667)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_x522g"]
+[sub_resource type="Curve2D" id="Curve2D_bcu6i"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 5.33333, 0, 0, 0, 0, -343, -285.333, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_kihuh"]
+[sub_resource type="Curve2D" id="Curve2D_vds8h"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344.333, -4.66667, 0, 0, 0, 0, -344.333, -297, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_ygri4"]
+[sub_resource type="Curve2D" id="Curve2D_rco1i"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -258.667, 1.33334, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_ti2hy"]
+[sub_resource type="Curve2D" id="Curve2D_hq81a"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -348, 0, 0, 0, 0, 0, -264, 0, 0, 0, 0, 0, -348, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_s2v5a"]
+[sub_resource type="Curve2D" id="Curve2D_sebdj"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -342, -312, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_gpj7n"]
+[sub_resource type="Curve2D" id="Curve2D_bbob7"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -344, -108, 0, 0, 0, 0, -344, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_8dpx6"]
+[sub_resource type="Curve2D" id="Curve2D_nlftc"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -252, 0, 0, 0, 0, 0, -344, 0)
@@ -72,7 +73,14 @@ point_count = 3
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_mer3m"]
 b = Vector2(0, -488)
 
-[sub_resource type="Curve2D" id="Curve2D_ve56o"]
+[sub_resource type="Curve2D" id="Curve2D_khukh"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -116, 0, 0, 0, 0, 0, -344, 0)
+}
+point_count = 3
+
+[sub_resource type="Curve2D" id="Curve2D_gh75e"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -344, 0, 0, 0, 0, 0, -116, 0, 0, 0, 0, 0, -344, 0)
@@ -156,18 +164,18 @@ texture = ExtResource("5_skldv")
 [node name="MovingFog2" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(1095, 80)
 scale = Vector2(3, 3)
-curve = SubResource("Curve2D_235tn")
+curve = SubResource("Curve2D_poxu7")
 
 [node name="MovingFog3" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(1127, 112)
 scale = Vector2(3, 3)
-curve = SubResource("Curve2D_x522g")
+curve = SubResource("Curve2D_bcu6i")
 speed = 0.18
 
 [node name="MovingFog4" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(1167, 152)
 scale = Vector2(3, 3)
-curve = SubResource("Curve2D_kihuh")
+curve = SubResource("Curve2D_vds8h")
 speed = 0.16
 
 [node name="ExportLevel3" type="Sprite2D" parent="."]
@@ -179,28 +187,28 @@ texture = ExtResource("7_5he0x")
 [node name="MovingFog" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(1408, -652)
 scale = Vector2(3, 3)
-curve = SubResource("Curve2D_ygri4")
+curve = SubResource("Curve2D_rco1i")
 
 [node name="MovingFog5" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(704, -824)
 scale = Vector2(2, 2)
-curve = SubResource("Curve2D_ti2hy")
+curve = SubResource("Curve2D_hq81a")
 
 [node name="MovingFog6" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(636, -600)
 scale = Vector2(2, 2)
-curve = SubResource("Curve2D_s2v5a")
+curve = SubResource("Curve2D_sebdj")
 speed = 0.25
 
 [node name="MovingFog7" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(448, -704)
 scale = Vector2(2, 2)
-curve = SubResource("Curve2D_gpj7n")
+curve = SubResource("Curve2D_bbob7")
 
 [node name="MovingFog8" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(432, -1244)
 scale = Vector2(2, 2)
-curve = SubResource("Curve2D_8dpx6")
+curve = SubResource("Curve2D_nlftc")
 
 [node name="StaticFog" parent="." instance=ExtResource("8_emkv4")]
 position = Vector2(0, -656)
@@ -221,12 +229,12 @@ shape = SubResource("SegmentShape2D_mer3m")
 [node name="MovingFog9" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(240, -16)
 scale = Vector2(2, 2)
-curve = SubResource("Curve2D_ve56o")
+curve = SubResource("Curve2D_khukh")
 
 [node name="MovingFog10" parent="." instance=ExtResource("6_e1w7q")]
 position = Vector2(888, -16)
 scale = Vector2(2, 2)
-curve = SubResource("Curve2D_ve56o")
+curve = SubResource("Curve2D_gh75e")
 
 [node name="MoonFragment" parent="." instance=ExtResource("9_8eqt2")]
 position = Vector2(120, -1312)
@@ -257,3 +265,8 @@ position = Vector2(672, -16)
 
 [node name="Star3" parent="." instance=ExtResource("12_tveff")]
 position = Vector2(226, -505)
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_c1jak")
+autoplay = true
+bus = &"Music"

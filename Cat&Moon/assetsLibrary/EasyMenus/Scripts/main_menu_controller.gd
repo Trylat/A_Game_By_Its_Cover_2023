@@ -6,9 +6,10 @@ signal load_game_pressed
 @onready var load_game_button: Button = $Content/LoadGameButton
 @onready var options_menu: OptionsMenuController = $%OptionsMenu
 @onready var content: Control = $%Content 
+@onready var music := $MainMenuMusic as AudioStreamPlayer
 
 func _ready():
-	new_game_button.grab_focus()
+	open_main_menu();
 
 func quit():
 	get_tree().quit()
@@ -24,10 +25,12 @@ func close_options():
 	options_menu.hide()
 
 func open_main_menu():
+	music.play()
 	new_game_button.grab_focus()
 	self.show()
 
 func close_main_menu():
+	music.stop()
 	self.hide()
 
 func disable_load_game_button():
