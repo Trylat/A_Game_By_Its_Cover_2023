@@ -16,6 +16,7 @@ var currentLevel: Node2D = null
 func _ready() -> void:
 	SignalBus.OnNewSpawnPoint.connect(save_game)
 	SignalBus.OnMoonFragmentCollected.connect(start_next_level)
+	SignalBus.onPlayerDeath.connect(_on_player_death)
 	pauseMenu.close_pause_menu()
 	get_tree().auto_accept_quit = false
 	get_tree().quit_on_go_back = false
@@ -119,3 +120,7 @@ func _on_pause_menu_back_to_main_pressed():
 	else: 
 		mainMenu.disable_load_game_button()
 	mainMenu.open_main_menu()
+	
+func _on_player_death():
+	await(get_tree().create_timer(5.0).timeout)
+	start_load_game()

@@ -8,8 +8,8 @@ signal  Transitioned
 @export var state_vector_modifier : Vector2 = Vector2(1.0, 1.0)
 @export var h_speed_max : float = 200.0
 
-var character : Player
-var playback : AnimationNodeStateMachinePlayback
+var character : Player = null
+var playback : AnimationNodeStateMachinePlayback = null
 var next_state : State
 
 #This is what process is run in the state at all time when this is the current state

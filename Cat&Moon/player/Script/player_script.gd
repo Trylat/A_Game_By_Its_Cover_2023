@@ -6,7 +6,7 @@ signal OnNewSpawnPoint
 @onready var Sprite: Sprite2D = $Sprite2D
 @onready var hissArea: Area2D = $HissArea2D
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var state_machine : StateMachine = $StateMachine
+@onready var state_machine := $StateMachine as StateMachine
 
 @export var h_speed_max : float = 200.0
 @export var h_step_speed : float = 1.0
@@ -16,6 +16,9 @@ signal OnNewSpawnPoint
 
 @export var spawnPoint: LampPost = null
 @export var nbLightsCollected: int = 0
+
+var isAlive: bool = true
+var angularVelocity: float = 0.0
 
 var direction = Vector2.ZERO
 # Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -35,12 +38,18 @@ func _process(_delta):
 	
 
 func _physics_process(delta):
-	if !is_alive:
-		death_state()
-	h_speed_max = state_machine.current_state.h_speed_max
-	do_movement(delta)
-	do_hiss()
-
+	if (isAlive):
+		h_speed_max = state_machine.current_state.h_speed_max
+		do_movement(delta)
+		do_sprite_flip()
+		do_hiss()
+		do_animation()
+	else:
+		self.velocity *= 0.98
+		angularVelocity *= 0.98
+		
+	self.rotate(angularVelocity) 
+	move_and_slide()
 
 func do_movement(delta: float):
 	# Get character movement direction vector based on player input
@@ -55,11 +64,6 @@ func do_movement(delta: float):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
-	do_sprite_flip()
-	do_animation()
-	move_and_slide()
-	
 
 func do_h_speed_calculation():
 	if abs(velocity.x) < h_speed_max:
@@ -87,8 +91,6 @@ func do_sprite_flip():
 # @brief Select current animation based on CharacterBody2D
 func do_animation():
 	# Use velocity vector to blend animations whit the animation tree
-	
-
 	vel_scale.x = velocity.x / h_speed_max
 	vel_scale.y = velocity.y / v_speed_init
 	if is_running:
@@ -137,6 +139,21 @@ func _on_pickup_area_2d_area_entered(area: Area2D):
 			nbLightsCollected += 1
 			StaticFog.on_light_collected(nbLightsCollected)
 
+func kill() -> void:
+	if (isAlive):
+		isAlive = false
+		angularVelocity = 0.2 * direction.x
+		state_machine.switch_state(state_machine.states["dead"])
+		
+		var cam = $Camera2D as Camera2D
+		var camPosition = cam.global_position
+		self.remove_child(cam)
+		self.get_parent().add_child(cam)
+		cam.global_position = camPosition
+		
+		SignalBus.onPlayerDeath.emit()
 
-func death_state():
-	pass
+func _on_hit_area_2d_area_entered(area:Area2D):
+	if area is FogArea:
+		self.kill()
+
