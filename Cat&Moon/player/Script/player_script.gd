@@ -17,6 +17,7 @@ signal OnNewSpawnPoint
 @export var spawnPoint: LampPost = null
 @export var nbLightsCollected: int = 0
 
+var levelCompleted := false
 var isImmortal := false
 var isAlive: bool = true
 var angularVelocity: float = 0.0
@@ -132,8 +133,10 @@ func do_hiss():
 
 func _on_pickup_area_2d_area_entered(area: Area2D):
 	if (area is MoonFragment):
-		isImmortal = true
-		SignalBus.OnMoonFragmentCollected.emit()
+		if (!levelCompleted):
+			isImmortal = true
+			levelCompleted = true
+			SignalBus.OnMoonFragmentCollected.emit()
 	elif (area is Light):
 		var light = area as Light
 		if (not light.is_on()):

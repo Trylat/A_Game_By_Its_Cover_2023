@@ -24,6 +24,7 @@ func close_options():
 	options_menu.hide()
 
 func open_main_menu():
+	new_game_button.grab_focus()
 	self.show()
 
 func close_main_menu():

@@ -5,6 +5,7 @@ extends Node2D
 @onready var pauseMenu := $CanvasLayer/PauseMenu as PauseMenuController
 @onready var mainMenu := $CanvasLayer/MainMenu as MainMenuController
 @onready var levelCompletedMenu := $CanvasLayer/LevelCompletedMenu as Control
+@onready var victoryMenu := $CanvasLayer/VictoryMenu as VictoryMenuController
 
 const savePath: String = "user://Save/"
 
@@ -20,6 +21,7 @@ func _ready() -> void:
 	SignalBus.onPlayerDeath.connect(_on_player_death)
 	pauseMenu.close_pause_menu()
 	levelCompletedMenu.hide()
+	victoryMenu.close_menu()
 	get_tree().auto_accept_quit = false
 	get_tree().quit_on_go_back = false
 	if (not DirAccess.dir_exists_absolute(savePath)):
@@ -97,7 +99,7 @@ func start_next_level() -> void:
 		start_level(persistentDatas.currentLevelIndex)
 		save_game()
 	elif (persistentDatas.currentLevelIndex == levels.size()):
-		print("Player win.")
+		victoryMenu.open_menu()
 	else:
 		push_error("Level ", persistentDatas.currentLevelIndex, " is invalid!")
 
@@ -115,7 +117,13 @@ func _on_main_menu_new_game_pressed() -> void:
 	start_new_game()
 	mainMenu.close_main_menu()
 
+func _on_victory_menu_back_to_main_pressed():
+	back_to_main_menu();
+
 func _on_pause_menu_back_to_main_pressed():
+	back_to_main_menu();
+
+func back_to_main_menu():
 	currentLevel.queue_free()
 	if (is_game_saved()):
 		mainMenu.enable_load_game_button()

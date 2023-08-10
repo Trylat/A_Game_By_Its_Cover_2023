@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bcka1thnbebnn" path="res://assetsLibrary/EasyMenus/Scenes/level_completed_menu.tscn" id="6_bmmja"]
 [ext_resource type="Texture2D" uid="uid://cyx1h2oqoxyst" path="res://Tiles/PC Computer - RPG Maker MV - Starlit Sky.png" id="6_we5py"]
 [ext_resource type="Texture2D" uid="uid://b0j4xgpr5eltg" path="res://Tiles/export level 3.png" id="7_8njsd"]
+[ext_resource type="PackedScene" uid="uid://k2vmeisektdc" path="res://assetsLibrary/EasyMenus/Scenes/victory_menu.tscn" id="7_lrfl3"]
 
 [sub_resource type="Curve2D" id="Curve2D_p6h4x"]
 resource_local_to_scene = true
@@ -29,6 +30,8 @@ levels = Array[PackedScene]([ExtResource("2_mc2x3"), ExtResource("3_ydqrc")])
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("3_76a11")]
 
 [node name="LevelCompletedMenu" parent="CanvasLayer" instance=ExtResource("6_bmmja")]
+
+[node name="VictoryMenu" parent="CanvasLayer" instance=ExtResource("7_lrfl3")]
 
 [node name="Cityscape" type="Sprite2D" parent="."]
 modulate = Color(0.694118, 0.694118, 0.694118, 1)
@@ -101,3 +104,4 @@ progress = 10.4753
 [connection signal="load_game_pressed" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_load_game_pressed"]
 [connection signal="new_game_pressed" from="CanvasLayer/MainMenu" to="." method="_on_main_menu_new_game_pressed"]
 [connection signal="back_to_main_pressed" from="CanvasLayer/PauseMenu" to="." method="_on_pause_menu_back_to_main_pressed"]
+[connection signal="back_to_main_pressed" from="CanvasLayer/VictoryMenu" to="." method="_on_victory_menu_back_to_main_pressed"]

@@ -1,0 +1,60 @@
+[gd_scene load_steps=2 format=3 uid="uid://k2vmeisektdc"]
+
+[ext_resource type="Script" path="res://assetsLibrary/EasyMenus/Scripts/victory_menu_controller.gd" id="1_vbr65"]
+
+[node name="VictoryMenu" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vbr65")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Content" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 15
+
+[node name="VictoryMenuLabel" type="Label" parent="Content"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 45
+text = "The moon and stars shine once again. A warm glow emanates from the city. The cat has fallen asleep.
+Congratulations and thank you."
+horizontal_alignment = 1
+autowrap_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="Content"]
+custom_minimum_size = Vector2(0, 70)
+layout_mode = 2
+
+[node name="BackToMenuButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Back to Main Menu"
+
+[node name="QuitButton" type="Button" parent="Content"]
+custom_minimum_size = Vector2(350, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 30
+text = "Quit"
+
+[connection signal="pressed" from="Content/BackToMenuButton" to="." method="_on_back_to_menu_button_pressed"]
+[connection signal="pressed" from="Content/QuitButton" to="." method="_on_quit_button_pressed"]
