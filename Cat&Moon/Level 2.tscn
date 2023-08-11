@@ -15,49 +15,49 @@
 [ext_resource type="Texture2D" uid="uid://e3bjxfy486ie" path="res://Tiles/eclipse level 2.png" id="13_oso4x"]
 [ext_resource type="PackedScene" uid="uid://c4fx4gedeui3f" path="res://collectibles/moon_fragment/moon_fragment.tscn" id="14_wooy2"]
 
-[sub_resource type="Curve2D" id="Curve2D_xthn1"]
+[sub_resource type="Curve2D" id="Curve2D_1m0qb"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -272.667, 7.33334, 0, 0, 0, 0, -272.667, -94, 0, 0, 0, 0, -272.667, 7.33334)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_virwn"]
+[sub_resource type="Curve2D" id="Curve2D_e7vcm"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -231.333, -0.666656, 0, 0, 0, 0, -119.333, -0.666656, 0, 0, 0, 0, -231.333, -0.666656)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_j8y1g"]
+[sub_resource type="Curve2D" id="Curve2D_kpcwe"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -309.333, 37.3333, 0, 0, 0, 0, -309.333, -42.6667, 0, 0, 0, 0, -309.333, 37.3333)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_l7giy"]
+[sub_resource type="Curve2D" id="Curve2D_isdyq"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -229.333, 0, 0, 0, 0, 0, -85.3333, 0, 0, 0, 0, 0, -229.333, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_twvfe"]
+[sub_resource type="Curve2D" id="Curve2D_bc1y7"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, -218.667, 0, 0, 0, 0, 0, -218.667, -101.333, 0, 0, 0, 0, -218.667, 0)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_tx0qq"]
+[sub_resource type="Curve2D" id="Curve2D_vdl07"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 5.33333, -5.33334, 0, 0, 0, 0, -234.667, -5.33334, 0, 0, 0, 0, 5.33333, -5.33334)
 }
 point_count = 3
 
-[sub_resource type="Curve2D" id="Curve2D_e1x8d"]
+[sub_resource type="Curve2D" id="Curve2D_s88qs"]
 resource_local_to_scene = true
 _data = {
 "points": PackedVector2Array(0, 0, 0, 0, 5.33333, -5.33334, 0, 0, 0, 0, -234.667, -5.33334, 0, 0, 0, 0, 5.33333, -5.33334)
@@ -65,6 +65,7 @@ _data = {
 point_count = 3
 
 [sub_resource type="SegmentShape2D" id="SegmentShape2D_s27n8"]
+a = Vector2(0, 0.111866)
 b = Vector2(0, -488)
 
 [node name="Node2D" type="Node2D"]
@@ -106,27 +107,27 @@ numberOfLightsToDestroy = 99
 [node name="MovingFog" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(-191, -227)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_xthn1")
+curve = SubResource("Curve2D_1m0qb")
 
 [node name="MovingFog2" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(-197, -431)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_virwn")
+curve = SubResource("Curve2D_e7vcm")
 
 [node name="MovingFog3" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(880, -64)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_j8y1g")
+curve = SubResource("Curve2D_kpcwe")
 
 [node name="MovingFog4" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(904, -232)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_l7giy")
+curve = SubResource("Curve2D_isdyq")
 
 [node name="MovingFog5" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(1048, -624)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_twvfe")
+curve = SubResource("Curve2D_bc1y7")
 
 [node name="StaticFog2" parent="." instance=ExtResource("4_wnlbf")]
 position = Vector2(216, -368)
@@ -161,12 +162,12 @@ numberOfLightsToDestroy = 5
 [node name="MovingFog6" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(112, -632)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_tx0qq")
+curve = SubResource("Curve2D_vdl07")
 
 [node name="MovingFog7" parent="." instance=ExtResource("5_bu4wu")]
 position = Vector2(112, -632)
 scale = Vector2(1.5, 1.5)
-curve = SubResource("Curve2D_e1x8d")
+curve = SubResource("Curve2D_s88qs")
 
 [node name="StaticFog6" parent="." instance=ExtResource("4_wnlbf")]
 position = Vector2(96, -856)
@@ -409,3 +410,148 @@ texture = ExtResource("13_oso4x")
 [node name="MoonFragment" parent="." instance=ExtResource("14_wooy2")]
 position = Vector2(14, -883)
 scale = Vector2(3, 3)
+
+[node name="StaticFog12" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-192, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog13" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-224, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog14" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-256, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog15" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-288, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog16" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-320, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog17" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-352, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog18" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-384, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog19" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-416, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog20" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-448, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog21" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-480, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog22" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-512, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog23" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-544, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog24" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-576, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog25" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-608, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog26" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-640, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog27" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-672, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog28" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-704, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog29" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-736, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog30" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-768, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog31" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-800, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog32" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-832, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog33" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-864, 144)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog34" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(-896, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog35" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(568, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog36" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(600, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog37" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(632, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog38" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(664, 152)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog39" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(704, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
+
+[node name="StaticFog40" parent="." instance=ExtResource("4_wnlbf")]
+position = Vector2(944, 160)
+scale = Vector2(3, 3)
+numberOfLightsToDestroy = 999
