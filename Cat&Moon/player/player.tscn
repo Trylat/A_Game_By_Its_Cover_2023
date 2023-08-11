@@ -1,20 +1,20 @@
-[gd_scene load_steps=63 format=3 uid="uid://67pdasueyci3"]
+[gd_scene load_steps=64 format=3 uid="uid://67pdasueyci3"]
 
 [ext_resource type="Script" path="res://player/Script/player_script.gd" id="1_21cuq"]
+[ext_resource type="AudioStream" uid="uid://dppexhhg4528v" path="res://musics/cat_falling_to_deth.mp3" id="2_8itih"]
 [ext_resource type="Texture2D" uid="uid://d3ytyd3d2kdef" path="res://player/Art/Jump_frames/chat_Sot_2.0.png" id="2_cw1ph"]
 [ext_resource type="Texture2D" uid="uid://b2mt718atpw0q" path="res://player/Art/chat_Tombe.png" id="2_d3p0s"]
 [ext_resource type="Texture2D" uid="uid://c2v0j4eiihslg" path="res://player/Art/spritesheet_idle.png" id="2_s14sr"]
 [ext_resource type="AudioStream" uid="uid://nid0iukfgfg7" path="res://musics/Cat_hiss.mp3" id="3_4j562"]
-[ext_resource type="Texture2D" uid="uid://bvlou3fcxrwk7" path="res://player/Art/idle_player_spritesheet-Sheet.png" id="3_lnbgd"]
-[ext_resource type="Texture2D" uid="uid://bwqekfwwhvbs" path="res://player/Art/run_player_spritesheet-Sheet.png" id="3_tgpyr"]
-[ext_resource type="Texture2D" uid="uid://bxk7ekv4esxkg" path="res://player/Art/walk_player_spritesheet-Sheet.png" id="4_w8wcp"]
-[ext_resource type="Texture2D" uid="uid://buwpeafnovw2e" path="res://player/Art/jump_player_spritesheet-Sheet.png" id="5_cfalp"]
+[ext_resource type="AudioStream" uid="uid://ct0lrlnkn63t0" path="res://musics/cloud_catkill.mp3" id="3_7ytfg"]
+[ext_resource type="AudioStream" uid="uid://cx5fnykmr0aq8" path="res://musics/damaged_cat.mp3" id="4_dg6n2"]
 [ext_resource type="Texture2D" uid="uid://c47b85818815g" path="res://player/Art/spritesheet_walk.png" id="6_5t6pd"]
 [ext_resource type="Script" path="res://player/Script/StateMachine.gd" id="6_bmnu2"]
 [ext_resource type="Script" path="res://player/Script/IdleState.gd" id="7_5ni0x"]
 [ext_resource type="Script" path="res://player/Script/StateDebugLabel.gd" id="7_j0hi2"]
 [ext_resource type="Script" path="res://player/Script/AirState.gd" id="8_0wm1g"]
 [ext_resource type="Texture2D" uid="uid://uuoe5a6gdtqs" path="res://player/Art/Jump_frames/sot_1.png" id="10_e0vdt"]
+[ext_resource type="Texture2D" uid="uid://da0t1b3f8fp3k" path="res://player/Art/chat_peur.png" id="11_csqex"]
 [ext_resource type="Texture2D" uid="uid://byalnhxqnk0qm" path="res://player/Art/Jump_frames/chat_Sot_1.1.png" id="11_oftre"]
 [ext_resource type="Script" path="res://player/Script/WalkState.gd" id="11_xdl2r"]
 [ext_resource type="Script" path="res://player/Script/RunState.gd" id="12_pjd32"]
@@ -22,136 +22,20 @@
 [ext_resource type="Script" path="res://player/Script/JumpState.gd" id="13_5unrw"]
 [ext_resource type="Texture2D" uid="uid://sfwefqipgisx" path="res://player/Art/chat_marche_1.0.png" id="13_wkfwl"]
 [ext_resource type="Script" path="res://player/Script/PreviousStateDebugLabel.gd" id="16_jv2nc"]
+[ext_resource type="Script" path="res://player/Script/DeadState.gd" id="18_5032o"]
 [ext_resource type="AudioStream" uid="uid://cq66xxbrydbkp" path="res://musics/cat_touchdown.mp3" id="23_j88to"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jcfwu"]
 size = Vector2(20.53, 12)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_jn58y"]
+radius = 40.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ure2y"]
 radius = 18.0
 
-[sub_resource type="Animation" id="Animation_6ajsy"]
-resource_name = "Idle"
-length = 0.2
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("3_lnbgd")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [2]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_ynnt2"]
-resource_name = "JumpEnd"
-length = 0.01
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_cfalp")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
-
-[sub_resource type="Animation" id="Animation_adc4w"]
-resource_name = "JumpStart"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("5_cfalp")]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [1]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
-}
+[sub_resource type="CircleShape2D" id="CircleShape2D_mx0bc"]
+radius = 5.0
 
 [sub_resource type="Animation" id="Animation_t4e1g"]
 resource_name = "NewIdle"
@@ -690,10 +574,11 @@ tracks/3/keys = {
 "values": [ExtResource("2_cw1ph")]
 }
 
-[sub_resource type="Animation" id="Animation_qlq65"]
-resource_name = "Run"
-length = 0.2
+[sub_resource type="Animation" id="Animation_xq2w1"]
+resource_name = "dead"
+length = 0.1
 loop_mode = 1
+step = 0.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -704,7 +589,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("3_tgpyr")]
+"values": [ExtResource("11_csqex")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -716,7 +601,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [2]
+"values": [1]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -725,58 +610,26 @@ tracks/2/path = NodePath("Sprite2D:frame")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [0, 1]
-}
-
-[sub_resource type="Animation" id="Animation_rips1"]
-resource_name = "Walk"
-length = 0.3
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:texture")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("4_w8wcp")]
+"values": [0]
 }
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:hframes")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = false
+tracks/3/path = NodePath("Sprite2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [3]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Sprite2D:frame")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 1,
-"values": [0, 1, 2]
+"update": 0,
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_8xt2f"]
 _data = {
-"Idle": SubResource("Animation_6ajsy"),
-"JumpEnd": SubResource("Animation_ynnt2"),
-"JumpStart": SubResource("Animation_adc4w"),
 "NewIdle": SubResource("Animation_t4e1g"),
 "NewJumpMiddleHightLeft": SubResource("Animation_hbgji"),
 "NewJumpMiddleHightRight": SubResource("Animation_b3wqs"),
@@ -787,8 +640,7 @@ _data = {
 "NewWalk": SubResource("Animation_dit83"),
 "PH_NewRun": SubResource("Animation_tpekh"),
 "RESET": SubResource("Animation_6ppym"),
-"Run": SubResource("Animation_qlq65"),
-"Walk": SubResource("Animation_rips1")
+"dead": SubResource("Animation_xq2w1")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cidss"]
@@ -871,6 +723,9 @@ min_space = Vector2(-1.1, -1)
 max_space = Vector2(1.1, 1)
 blend_mode = 1
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wp4dd"]
+animation = &"dead"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_u1bkq"]
 advance_mode = 2
 
@@ -880,19 +735,28 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_m61o4"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_l2iu0"]
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jn2lv"]
 states/JumpStart/node = SubResource("AnimationNodeAnimation_cidss")
-states/JumpStart/position = Vector2(334, 92)
+states/JumpStart/position = Vector2(334, 93)
 states/Move/node = SubResource("AnimationNodeBlendSpace2D_g0seg")
 states/Move/position = Vector2(334, 208)
 states/Start/position = Vector2(136, 208)
-transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_u1bkq"), "Move", "JumpStart", SubResource("AnimationNodeStateMachineTransition_vukpt"), "JumpStart", "Move", SubResource("AnimationNodeStateMachineTransition_ij7ip")]
-graph_offset = Vector2(-236, -46)
+states/dead/node = SubResource("AnimationNodeAnimation_wp4dd")
+states/dead/position = Vector2(500, 153)
+transitions = ["Start", "Move", SubResource("AnimationNodeStateMachineTransition_u1bkq"), "Move", "JumpStart", SubResource("AnimationNodeStateMachineTransition_vukpt"), "JumpStart", "Move", SubResource("AnimationNodeStateMachineTransition_ij7ip"), "Move", "dead", SubResource("AnimationNodeStateMachineTransition_m61o4"), "JumpStart", "dead", SubResource("AnimationNodeStateMachineTransition_l2iu0")]
+graph_offset = Vector2(-50, 75.9474)
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_21cuq")
 h_speed_max = 100.0
 h_step_speed = 10.0
+v_speed_init = 415.0
+v_speed_min = 215.0
+deadSounds = Array[AudioStream]([ExtResource("2_8itih"), ExtResource("3_7ytfg"), ExtResource("4_dg6n2")])
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(-0.01, 0.01)
@@ -919,6 +783,11 @@ bus = &"SFX"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PickupArea2D"]
 shape = SubResource("CircleShape2D_ure2y")
 
+[node name="HitArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HitArea2D"]
+shape = SubResource("CircleShape2D_mx0bc")
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8xt2f")
@@ -927,7 +796,7 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = SubResource("AnimationNodeStateMachine_jn2lv")
 anim_player = NodePath("../AnimationPlayer")
-parameters/Move/blend_position = Vector2(0.0946064, -0.598945)
+parameters/Move/blend_position = Vector2(-0.36784, -0.365269)
 parameters/Move/4/blend_position = 0
 parameters/Move/5/blend_position = 0
 parameters/Move/6/blend_position = 0
@@ -944,7 +813,6 @@ air_state = NodePath("../Air")
 walking_state = NodePath("../Walk")
 running_state = NodePath("../Run")
 high_jump_state = NodePath("../Jump")
-h_speed_max = 0.01
 
 [node name="Walk" type="Node" parent="StateMachine" node_paths=PackedStringArray("air_state", "iddle_state", "running_state", "jump_state", "state_machine")]
 script = ExtResource("11_xdl2r")
@@ -967,14 +835,19 @@ h_speed_max = 300.0
 script = ExtResource("8_0wm1g")
 state_machine = NodePath("..")
 touchdown_sfx = NodePath("../../TouchdownSFX")
-h_speed_max = 100.0
+h_speed_max = 300.0
 
 [node name="Jump" type="Node" parent="StateMachine" node_paths=PackedStringArray("state_machine", "idlestate")]
 script = ExtResource("13_5unrw")
 state_machine = NodePath("..")
 idlestate = NodePath("../Idle")
+h_speed_max = 300.0
+
+[node name="Dead" type="Node" parent="StateMachine"]
+script = ExtResource("18_5032o")
 
 [node name="StateDebugLabel" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -115.0
 offset_top = -36.0
 offset_right = 99.0
@@ -984,6 +857,7 @@ script = ExtResource("7_j0hi2")
 state_machine = NodePath("../StateMachine")
 
 [node name="StateDebugLabel2" type="Label" parent="." node_paths=PackedStringArray("state_machine")]
+visible = false
 offset_left = -115.0
 offset_top = -57.0
 offset_right = 140.0
@@ -996,5 +870,9 @@ state_machine = NodePath("../StateMachine")
 stream = ExtResource("23_j88to")
 bus = &"SFX"
 
+[node name="DeadAudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+bus = &"SFX"
+
 [connection signal="area_entered" from="PickupArea2D" to="." method="_on_pickup_area_2d_area_entered"]
+[connection signal="area_entered" from="HitArea2D" to="." method="_on_hit_area_2d_area_entered"]
 [connection signal="animation_finished" from="AnimationTree" to="StateMachine/Idle" method="_on_animation_tree_animation_finished"]

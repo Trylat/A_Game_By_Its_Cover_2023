@@ -17,3 +17,4 @@ extends Node
 
 signal OnNewSpawnPoint
 signal OnMoonFragmentCollected
+signal onPlayerDeath

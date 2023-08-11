@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://bedpak08tclvo"]
+[gd_scene load_steps=24 format=3 uid="uid://bedpak08tclvo"]
 
 [ext_resource type="TileSet" uid="uid://h5kkjm0tjfs2" path="res://Tiles/new_tile_set.tres" id="1_jw8do"]
 [ext_resource type="TileSet" uid="uid://g65c3x1ut48q" path="res://Tiles/cloudset.tres" id="2_0mu1u"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://brlehaa4026pf" path="res://Tiles/Eiffel tower.png" id="12_lc8ib"]
 [ext_resource type="Texture2D" uid="uid://e3bjxfy486ie" path="res://Tiles/eclipse level 2.png" id="13_oso4x"]
 [ext_resource type="PackedScene" uid="uid://c4fx4gedeui3f" path="res://collectibles/moon_fragment/moon_fragment.tscn" id="14_wooy2"]
+[ext_resource type="AudioStream" uid="uid://dk6uhv2yu4wf2" path="res://musics/Level_music.mp3" id="15_b7syq"]
 
 [sub_resource type="Curve2D" id="Curve2D_1m0qb"]
 resource_local_to_scene = true
@@ -555,3 +556,8 @@ numberOfLightsToDestroy = 999
 position = Vector2(944, 160)
 scale = Vector2(3, 3)
 numberOfLightsToDestroy = 999
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("15_b7syq")
+autoplay = true
+bus = &"Music"

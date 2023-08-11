@@ -1,4 +1,4 @@
-class_name StaticFog extends Area2D
+class_name StaticFog extends FogArea
 
 # The number of collected lights by the player to destroy this Fog.
 @export var numberOfLightsToDestroy: int = 0

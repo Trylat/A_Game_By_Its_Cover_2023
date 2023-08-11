@@ -2,11 +2,14 @@ class_name FogArea extends Area2D
 
 signal hiss_received
 
+@onready var evilCloudWisperSFX := $EvilCloudWisperSXF as AudioStreamPlayer2D
+@onready var cloudDamageFromCatSFX := $CloudDamageFromCatSFX as AudioStreamPlayer2D
+
 func _ready():
-	$EvilCloudWisperSXF.play()
+	evilCloudWisperSFX.play()
 
 func on_hiss():
 	hiss_received.emit()
-	$EvilCloudWisperSXF.stop()
-	$CloudDamageFromCatSFX.play()
-	$EvilCloudWisperSXF.play()
+	evilCloudWisperSFX.stop()
+	cloudDamageFromCatSFX.play()
+	evilCloudWisperSFX.play()

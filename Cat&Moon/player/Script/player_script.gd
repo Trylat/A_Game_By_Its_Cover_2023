@@ -6,7 +6,7 @@ signal OnNewSpawnPoint
 @onready var Sprite: Sprite2D = $Sprite2D
 @onready var hissArea: Area2D = $HissArea2D
 @onready var animation_tree: AnimationTree = $AnimationTree
-@onready var state_machine : StateMachine = $StateMachine
+@onready var state_machine := $StateMachine as StateMachine
 
 @export var h_speed_max : float = 200.0
 @export var h_step_speed : float = 1.0
@@ -17,7 +17,16 @@ signal OnNewSpawnPoint
 @export var spawnPoint: LampPost = null
 @export var nbLightsCollected: int = 0
 
-var direction = Vector2.ZERO
+@export var deadSounds: Array[AudioStream]
+@onready var deadAudioPlayer := $DeadAudioStreamPlayer2D as AudioStreamPlayer2D
+@onready var hissSfx := $HissArea2D/HissSFX as AudioStreamPlayer
+
+var levelCompleted := false
+var isImmortal := false
+var isAlive: bool = true
+var angularVelocity: float = 0.0
+var drag := 0.80
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var playback : AnimationNodeStateMachinePlayback
@@ -35,36 +44,49 @@ func _process(_delta):
 	
 
 func _physics_process(delta):
-	if !is_alive:
-		death_state()
-	h_speed_max = state_machine.current_state.h_speed_max
-	do_movement(delta)
-	do_hiss()
-
-
-func do_movement(delta: float):
-	# Get character movement direction vector based on player input
-	direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
-
-	if direction.x && state_machine.checkCanMove():
-		do_h_speed_calculation()
+	if (isAlive):
+		h_speed_max = state_machine.current_state.h_speed_max
+		process_inputs(delta)
+		do_sprite_flip()
+		do_hiss()
+		do_animation()
 	else:
-		velocity.x = 0.0 #move_toward(velocity.x, 0, h_speed_max)
+		do_drag()
 	
+	do_gravity(delta)
+	self.rotate(angularVelocity) 
+	move_and_slide()
+
+func do_drag():
+	self.velocity.x *= drag
+	angularVelocity *= drag
 	
-	# Add the gravity.
+	if abs(velocity.x) < 10:
+		velocity.x = 0 
+	
+	if abs(angularVelocity) < 0.01:
+		angularVelocity = 0 
+
+func do_gravity(delta : float):
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	
-	do_sprite_flip()
-	do_animation()
-	move_and_slide()
-	
 
-func do_h_speed_calculation():
-	if abs(velocity.x) < h_speed_max:
-		velocity.x += direction.x * abs(h_step_speed * state_machine.vector_modifier.x)
+func process_inputs(delta: float):
+	# Get character movement direction vector based on player input
+	var direction = FixedInput.get_vector("player_walk_left", "player_walk_right", "player_look_up", "player_look_down")
 
+	if (sign(direction.x) == sign(velocity.x)) || \
+	   (velocity.x == 0) && \
+	   state_machine.checkCanMove():
+		do_h_speed_calculation(direction)
+	else:
+		do_drag()
+
+func do_h_speed_calculation(direction):
+	velocity.x += direction.x * abs(h_step_speed * state_machine.vector_modifier.x)
+	velocity.x = clamp(velocity.x, -h_speed_max, h_speed_max)
+	
+	
 
 func do_v_speed_calculation():
 	var x = clamp((abs(velocity.x) / 300), 0.0, 1.0)
@@ -75,20 +97,16 @@ func do_v_speed_calculation():
 
 func do_sprite_flip():
 	# face sprite left or right
-	if direction.x > 0:
+	if velocity.x > 0:
 		Sprite.flip_h = false
 		Sprite.rotation = 0
-		last_dir = 1
-	elif direction.x < 0:
+	elif velocity.x < 0:
 		Sprite.flip_h = true
-		last_dir = -1
 
 
 # @brief Select current animation based on CharacterBody2D
 func do_animation():
 	# Use velocity vector to blend animations whit the animation tree
-	
-
 	vel_scale.x = velocity.x / h_speed_max
 	vel_scale.y = velocity.y / v_speed_init
 	if is_running:
@@ -107,7 +125,7 @@ func do_animation():
 func do_hiss():
 	if(not Input.is_action_just_pressed("player_hiss")):
 		return
-	$HissArea2D/HissSFX.play()
+	hissSfx.play()
 	var isNewSpawnPointFounded: bool = false
 	for area in hissArea.get_overlapping_areas():
 		if (area is LampPost):
@@ -129,7 +147,10 @@ func do_hiss():
 
 func _on_pickup_area_2d_area_entered(area: Area2D):
 	if (area is MoonFragment):
-		SignalBus.OnMoonFragmentCollected.emit()
+		if (!levelCompleted):
+			isImmortal = true
+			levelCompleted = true
+			SignalBus.OnMoonFragmentCollected.emit()
 	elif (area is Light):
 		var light = area as Light
 		if (not light.is_on()):
@@ -137,6 +158,25 @@ func _on_pickup_area_2d_area_entered(area: Area2D):
 			nbLightsCollected += 1
 			StaticFog.on_light_collected(nbLightsCollected)
 
+func kill() -> void:
+	if (isAlive && !isImmortal):
+		isAlive = false
+		angularVelocity = 0.001 * velocity.x
+		drag = 0.98
+		state_machine.switch_state(state_machine.states["dead"])
+		
+		var cam = $Camera2D as Camera2D
+		var camPosition = cam.global_position
+		self.remove_child(cam)
+		self.get_parent().add_child(cam)
+		cam.global_position = camPosition
+		
+		deadAudioPlayer.stream = deadSounds.pick_random()
+		deadAudioPlayer.play()
+		
+		SignalBus.onPlayerDeath.emit()
 
-func death_state():
-	pass
+func _on_hit_area_2d_area_entered(area:Area2D):
+	if area is FogArea:
+		self.kill()
+

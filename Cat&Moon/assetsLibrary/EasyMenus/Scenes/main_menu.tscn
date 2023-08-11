@@ -1,7 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://dq6tvhqcy2aps"]
+[gd_scene load_steps=9 format=3 uid="uid://dq6tvhqcy2aps"]
 
 [ext_resource type="Script" path="res://assetsLibrary/EasyMenus/Scripts/main_menu_controller.gd" id="1_lbw7r"]
 [ext_resource type="PackedScene" uid="uid://qlskttl1wjr7" path="res://assetsLibrary/EasyMenus/Scenes/options_menu.tscn" id="2_pwqpr"]
+[ext_resource type="Texture2D" uid="uid://fybio0voh83y" path="res://Tiles/Cityscape.png" id="3_vjv2n"]
+[ext_resource type="Texture2D" uid="uid://d4hsv6ditet2d" path="res://Tiles/smallscape.png" id="4_0a1hb"]
+[ext_resource type="Texture2D" uid="uid://cyx1h2oqoxyst" path="res://Tiles/PC Computer - RPG Maker MV - Starlit Sky.png" id="5_5vfp5"]
+[ext_resource type="Texture2D" uid="uid://b0j4xgpr5eltg" path="res://Tiles/export level 3.png" id="6_8np1r"]
+[ext_resource type="AudioStream" uid="uid://cfu3vb73i126g" path="res://musics/wind_SFX.wav" id="7_8uw62"]
+
+[sub_resource type="Curve2D" id="Curve2D_hwfya"]
+resource_local_to_scene = true
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 1, 4, 0, 0, 0, 0, -70, -41, 0, 0, 0, 0, -253, -41, 0, 0, 0, 0, -348, -12, 0, 0, 0, 0, -426, 48, 0, 0, 0, 0, -515, 148, 0, 0, 0, 0, -531, 275, 0, 0, 0, 0, -558, 421, 0, 0, 0, 0, -536, 564, 0, 0, 0, 0, -424, 642, 0, 0, 0, 0, -236, 671, 0, 0, 0, 0, -69, 659, 0, 0, 0, 0, 30, 586, 0, 0, 0, 0, 85, 504, 0, 0, 0, 0, 123, 409, 0, 0, 0, 0, 168, 304, 0, 0, 0, 0, 163, 182, 0, 0, 0, 0, 131, 98, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0)
+}
+point_count = 20
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -87,6 +99,80 @@ text = "Quit"
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="Background" type="Node2D" parent="."]
+
+[node name="Cityscape" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+position = Vector2(256, 628)
+texture = ExtResource("3_vjv2n")
+
+[node name="Cityscape2" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+position = Vector2(764, 628)
+texture = ExtResource("3_vjv2n")
+
+[node name="Cityscape3" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+position = Vector2(1275, 628)
+texture = ExtResource("3_vjv2n")
+
+[node name="Smallscape" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+z_index = -1
+position = Vector2(95, 603)
+texture = ExtResource("4_0a1hb")
+
+[node name="Smallscape2" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+z_index = -1
+position = Vector2(430, 592)
+texture = ExtResource("4_0a1hb")
+
+[node name="Smallscape3" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+z_index = -1
+position = Vector2(608, 604)
+texture = ExtResource("4_0a1hb")
+
+[node name="Smallscape4" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+z_index = -1
+position = Vector2(931, 596)
+texture = ExtResource("4_0a1hb")
+
+[node name="Smallscape5" type="Sprite2D" parent="Background"]
+modulate = Color(0.694118, 0.694118, 0.694118, 1)
+z_index = -1
+position = Vector2(1121, 603)
+texture = ExtResource("4_0a1hb")
+
+[node name="PcComputer-RpgMakerMv-StarlitSky" type="Sprite2D" parent="Background"]
+z_index = -4
+position = Vector2(373, 370)
+texture = ExtResource("5_5vfp5")
+
+[node name="PcComputer-RpgMakerMv-StarlitSky2" type="Sprite2D" parent="Background"]
+z_index = -4
+position = Vector2(1189, 370)
+texture = ExtResource("5_5vfp5")
+
+[node name="ExportLevel3" type="Sprite2D" parent="Background"]
+position = Vector2(844, 86)
+texture = ExtResource("6_8np1r")
+
+[node name="Path2D" type="Path2D" parent="Background/ExportLevel3"]
+process_mode = 3
+curve = SubResource("Curve2D_hwfya")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Background/ExportLevel3/Path2D"]
+position = Vector2(-7.84136, -1.60368)
+rotation = -2.57669
+progress = 10.4753
+
+[node name="MainMenuMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_8uw62")
+bus = &"Music"
 
 [connection signal="pressed" from="Content/NewGameButton" to="." method="_on_new_game_button_pressed"]
 [connection signal="pressed" from="Content/LoadGameButton" to="." method="_on_load_game_button_pressed"]

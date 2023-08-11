@@ -3,7 +3,7 @@ extends State
 @export var landding_state : State
 
 func state_process(delta):
-	if character.is_on_floor():
+	if abs(character.velocity.y) < 1:
 		next_state = landding_state
 
 func on_exit():

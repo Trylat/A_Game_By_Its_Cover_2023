@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://canuhtr6uyalt" path="res://collectibles/lamp_post/lamp_post.tscn" id="10_nkxbh"]
 [ext_resource type="PackedScene" uid="uid://ctg6fhfps3g8h" path="res://collectibles/lights/light_bulb/light_bulb.tscn" id="11_v5l7q"]
 [ext_resource type="PackedScene" uid="uid://efovypnais1a" path="res://collectibles/lights/star/star.tscn" id="12_tveff"]
+[ext_resource type="AudioStream" uid="uid://821dxp4l574p" path="res://musics/final_drama_music.mp3" id="13_c1jak"]
 
 [sub_resource type="Curve2D" id="Curve2D_m23mo"]
 resource_local_to_scene = true
@@ -324,3 +325,8 @@ numberOfLightsToDestroy = 999
 position = Vector2(126, 192)
 scale = Vector2(5, 5)
 numberOfLightsToDestroy = 999
+
+[node name="LevelMusic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_c1jak")
+autoplay = true
+bus = &"Music"
