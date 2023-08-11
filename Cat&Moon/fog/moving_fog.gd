@@ -4,6 +4,7 @@ class_name MovingFog extends Path2D
 
 @onready var pathFollow: PathFollow2D = $PathFollow2D
 @onready var animatedSprite: AnimatedSprite2D = $PathFollow2D/FogArea/AnimatedSprite2D
+@onready var cloudDamageFromCatSFX := $CloudDamageFromCatSFX as AudioStreamPlayer2D
 
 var direction: int = 1
 
@@ -18,3 +19,5 @@ func reverse_direction():
 
 func _on_fog_area_hiss_received():
 	reverse_direction()
+	cloudDamageFromCatSFX.play()
+
