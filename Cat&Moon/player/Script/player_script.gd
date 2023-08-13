@@ -115,11 +115,9 @@ func do_animation():
 		vel_scale.x = vel_scale.x /2
 
 	animation_tree.set("parameters/Move/blend_position", velocity)
-	animation_tree.set("parameters/Move/4/blend_position", last_dir)
+	animation_tree.set("parameters/Move/4/blend_position", -1 if Sprite.flip_h else 1)
 	animation_tree.set("parameters/Move/5/blend_position", vel_scale.x)
 	animation_tree.set("parameters/Move/6/blend_position", vel_scale.x)
-	
-	
 
 # @brief Manage inputs for hiss and do actions accordingly.
 func do_hiss():

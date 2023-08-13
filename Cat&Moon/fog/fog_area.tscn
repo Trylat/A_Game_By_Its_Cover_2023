@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://c64ho6ntcg2vg"]
+[gd_scene load_steps=13 format=3 uid="uid://c64ho6ntcg2vg"]
 
 [ext_resource type="Script" path="res://fog/fog_area.gd" id="1_mel6u"]
 [ext_resource type="Texture2D" uid="uid://cdpmfpsekogtb" path="res://fog/fog_spritesheet.png" id="2_f30ih"]
+[ext_resource type="AudioStream" uid="uid://bbdbx14p4o1du" path="res://musics/evil_fog_whispers.mp3" id="3_002dl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5ffwu"]
 atlas = ExtResource("2_f30ih")
@@ -72,3 +73,10 @@ frame_progress = 0.1356
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_ibtek")
+
+[node name="EvilCloudWisperSXF" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_002dl")
+volume_db = 6.679
+max_distance = 200.0
+attenuation = 1.93188
+bus = &"SFX"
