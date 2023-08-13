@@ -15,4 +15,4 @@ mono_crash.*.json
 
 
 
-./build
+build/
